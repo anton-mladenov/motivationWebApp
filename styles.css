@@ -1,0 +1,221 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  /* background-image: url("./sky background.png"); */
+  margin: auto;
+  padding: auto;
+  width: 1400px;
+  background-color: #1C2541/*rgb(213, 213, 213)*/
+  ;
+}
+
+body {
+  background-color: #1C2541;
+  margin: auto;
+  width: 90%;
+  height: 90%;
+}
+
+#topNavBar {
+  background-color: #0B132B;
+}
+
+#topNavBar ul {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+#topNavBar li {
+  text-align: center;
+  list-style-type: none;
+  display: inline-block;
+  position: relative;
+}
+
+#topNavBar li a {
+  text-align: center;
+  font-family: Dosis;
+  font-weight: 900;
+  font-size: 17px;
+  padding: 10px 2em;
+  letter-spacing: 3px;
+  display: inline-block;
+  position: relative;
+  color: #5BC0BE;
+}
+
+.header {
+  color: #6FFFE9;
+  font-family: Gugi;
+  font-size: 25px;
+  text-transform: capitalize;
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+  margin: auto;
+  width: 100%;
+}
+
+#banner {
+  background-color: #1C2541;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  border-bottom: 1px white solid;
+  /* left: 15%; */
+  margin: auto;
+}
+
+#banner .header h1 {
+  display: block;
+}
+
+#banner .header h3 {
+  display: block;
+  color: #5BC0BE;
+  font-family: Dosis;
+}
+
+/* .subheader {
+  color: rgba(211, 0, 237, 0.70);
+  font-family: Dosis;
+  font-size: 22px;
+  text-transform: lowercase;
+  text-align: center;
+  position: relative;
+  margin: auto;
+  width: 70%;
+} */
+
+.threeMainThings {
+  width: 100%;
+  margin: 20px;
+}
+
+.threeMainThings ul {
+  width: 100%;
+  margin: auto;
+}
+
+.threeMainThings li {
+  width: 350px;
+  margin: 10px;
+  padding: 5px;
+  text-align: center;
+  list-style-type: none;
+  display: inline-block;
+  position: relative;
+}
+
+.threeMainThings li h6 {
+  font-family: Dosis;
+  font-size: 20px;
+  color: #6FFFE9;
+}
+
+.threeMainThings li p {
+  font-family: Dosis;
+  font-size: 15px;
+  color: #5BC0BE;
+}
+
+/* .mainButtonText {
+  color: rgb(17, 99, 238);
+  font-family: Gugi;
+  font-size: 25px;
+  text-transform: capitalize;
+  text-align: center;
+  position: relative;
+  margin: auto;
+  width: 70%;
+  border: 1px white solid;
+} */
+
+.secondaryButtonText {
+  color: #6FFFE9;
+  font-family: Dosis;
+  font-size: 25px;
+  text-transform: lowercase;
+  text-align: center;
+  position: relative;
+  margin: auto;
+  width: 100%;
+  padding: 1px;
+}
+
+#buttonDiv {
+  width: 100px; /* width behaves super strangely - should be working fine using % but it seems to be better now with px ??? */
+  margin: auto;
+  position: relative;
+}
+
+#doEverythingButton {
+  font-family: Lato;
+  font-weight: bold;
+  font-size: 15px;
+  color: #6FFFE9;
+  background-color: #0B132B;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  padding: 15px 40px;
+  border: 1px white solid;
+}
+
+#userOutputDiv {
+
+  color: #5BC0BE;
+  font-family: Dosis;
+  font-size: 25px;
+  text-transform: capitalize;
+  text-align: center;
+
+  width: 100%;
+  margin: 10px;
+  position: relative;
+  display: block;
+}
+
+#userInputField {
+  padding: 3px 15px;
+  margin: 0px;
+  font-family: Dosis;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  border: 1px #6FFFE9 solid;
+}
+
+#buttonDiv {
+  width: 100px; /* width behaves super strangely - should be working fine using % but it seems to be better now with px ??? */
+  margin: auto;
+  position: relative;
+}
+
+#RandomButton {
+  font-family: Lato;
+  font-weight: bold;
+  font-size: 15px;
+  color: #6FFFE9;
+  background-color: #0B132B;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  padding: 15px 40px;
+  border: 1px white solid;
+}
+
+#userInputField2 {
+  padding: 3px 15px;
+  margin: 0px;
+  font-family: Dosis;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  border: 1px #6FFFE9 solid;
+}
