@@ -4,7 +4,7 @@ import { MinLength, IsString } from 'class-validator';
 import User from "../users/entity"
 
 @Entity()
-export default class Motivations extends BaseEntity {
+export default class Motivation extends BaseEntity {
 
 	@PrimaryGeneratedColumn()
 	id?: number
