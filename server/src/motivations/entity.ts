@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm'
 import { BaseEntity } from 'typeorm/repository/BaseEntity'
 import { MinLength, IsString } from 'class-validator';
+import User from "../users/entity"
 
 @Entity()
 export default class Motivations extends BaseEntity {
@@ -13,4 +14,6 @@ export default class Motivations extends BaseEntity {
 	@Column('text', {nullable:false})
 	motivation: string
 
+	@ManyToOne(_ => User, user => user.id) 
+	user: number;
 }
