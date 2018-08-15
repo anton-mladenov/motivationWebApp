@@ -9,6 +9,21 @@ export const Title = styled.h1`
 
 // Create a Wrapper component that'll render a <section> tag with some styles
 export const Wrapper = styled.section`
-  padding: 4em;
+  padding: 2.5em;
   background: lightgreen;
+`;
+
+
+export const Title2 = styled.h2`
+	font-size: 17px;
+	text-align: center;
+	background: lightblue;
+	color: black;
+	padding: 1em;
+	font-family: Monaco;
+`
+
+export const Wrapper2 = styled.section`
+  padding: 1em;
+  background: orange;
 `;
