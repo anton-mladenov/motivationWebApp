@@ -1,9 +1,15 @@
 import { JsonController, Get, Param, Body, NotFoundError, HttpCode, Post, Patch, BodyParam, BadRequestError, Delete } from 'routing-controllers'
 import Motivations from './entity'
+// import {getRepository} from 'typeorm'
+
+// let randomizer = (array) => {
+// 	return array.splice(Math.floor(Math.random() * array.length), 1)[0]
+// }  
 
 @JsonController()
 export default class MotivationController {
 
+	// get ALL motivations
 	// @Authorized()
 	@Get("/motivations")
 	async getAllMotivations() {
@@ -11,6 +17,28 @@ export default class MotivationController {
 		return { allMotivations }
 	}
 
+	// get a RANDOM motivation
+	// @Authorized()
+	// @Get("/motivations/random")
+	// async getRandomMotivation() {
+		// da ne zabravq izteglq random mot's za konkretniq sign-at user, a ne ot vsichki user-i, kakto e sega
+		// sushto taka da sloja http kodove na vsichki request-i
+		
+		// let numbero: number = 0
+
+		// let motIds = await Motivations.find({ select: ["id"]})
+		// console.log("motIds: ", motIds)
+		// let randomId = await randomizer(motIds)
+		// console.log("randomId: ", typeof randomId.id, randomId.id)
+		// numbero = randomId.id
+
+		// console.log("numbero: ",typeof numbero[0], numbero)
+		// console.log(await Motivations.findOne(numbero))
+		// console.log( Object.keys(Motivations.findOne(numbero)))
+		// return await Motivations.findOne(numbero)	
+	// }
+
+	// get a PARTICULAR motivation
 	// @Authorized()
 	@Get("/motivations/:id")
 	async getSingleMotivation(
@@ -28,7 +56,8 @@ export default class MotivationController {
 	) {
 		const entity = Motivations.create()
 		entity.motivation = body.motivation
-		return await entity.save()
+		await entity.save()
+		return entity
 	}
 
 	// @Authorized()

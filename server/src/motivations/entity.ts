@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm'
 import { BaseEntity } from 'typeorm/repository/BaseEntity'
-import { MinLength, IsString } from 'class-validator';
+import { Length, IsString } from 'class-validator';
 import User from "../users/entity"
 
 @Entity()
@@ -10,7 +10,7 @@ export default class Motivation extends BaseEntity {
 	id?: number
 
 	@IsString()
-	@MinLength(5)
+	// @Length(5, 50)
 	@Column('text', {nullable:false})
 	motivation: string
 

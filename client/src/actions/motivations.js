@@ -17,6 +17,11 @@ export const getAllMotivations = (motivations) => ({
 	payload: motivations
 })
 
+export const addNewMotivation = (motivation) => ({
+	type: ADD_MOTIVATION,
+	payload: motivation
+})
+
 
 export const getMotivations = () => (dispatch) => {
 	
@@ -27,3 +32,27 @@ export const getMotivations = () => (dispatch) => {
 		// tuka da set-na authorization with jwt-to
 		.then(res => dispatch(getAllMotivations(res.body)))
 }
+
+export const addMotivation = (newMotivation) => (dispatch) => {
+		
+	// tuk da sloja getState i da vzeme jwt na current user-a
+	
+	request
+		.post(`${baseUrl}/motivations`)
+		// tuka da set-na authorization with jwt-to
+		// .set('Content-Type', 'application/json')
+		.send({
+			motivation: newMotivation
+		})
+		.then(res => dispatch(addNewMotivation(res.body)))
+		.catch(err => {
+			if (err.status === 400) {
+				// dispatch(userLoginFailed(err.response.body.message))
+				console.log(err.response.body.errors[0].constraints)
+			}
+			else {
+				console.error(err)
+			}
+		})
+}
+
