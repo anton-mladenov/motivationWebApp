@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import { Title2 } from "../../lib/styledComponentsLib"
-import { getMotivations, addMotivation } from "../../actions/motivations"
+// import { Title2 } from "../../lib/styledComponentsLib"
+import { addMotivation } from "../../actions/motivations"
 
 class AddNewMotivation extends Component {
 	
 	state = {
-		value: "you can type here..."
-	}
-
-	componentDidMount() {
-		this.props.getMotivations()
+		value: ""
 	}
 
 	handleChange = (event) => {
@@ -25,12 +21,8 @@ class AddNewMotivation extends Component {
 	
 	render() {
 
-		const { motivations } = this.props
-
 		return (
 		<div>
-
-			{ !motivations && <p> "Loading ..." </p> }
 
 			<form onSubmit={this.handleSubmit}>
 				<label>
@@ -40,22 +32,9 @@ class AddNewMotivation extends Component {
 				<input type="submit" value="Submit" />
 			</form>
 
-			{ motivations && motivations.map(mot => 
-				<div key={mot.id}>
-				<Title2> {mot.motivation} </Title2>
-				</div>
-				)
-			}
-
 		</div>
 		)
 	}
 }
 
-
-const mapStateToProps = state => ({
-	motivations: state.motivations
-
-})
-
-export default connect(mapStateToProps, { getMotivations, addMotivation })(AddNewMotivation)
+export default connect(null, { addMotivation })(AddNewMotivation)

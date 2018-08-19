@@ -11,6 +11,8 @@ export const GET_ONE_MOTIVATION = "GET_ONE_MOTIVATION"
 
 export const GET_ALL_MOTIVATIONS = "GET_ALL_MOTIVATIONS"
 
+export const RANDOM_MOTIVATION = "RANDOM_MOTIVATION"
+
 
 export const getAllMotivations = (motivations) => ({
 	type: GET_ALL_MOTIVATIONS,
@@ -22,6 +24,14 @@ export const addNewMotivation = (motivation) => ({
 	payload: motivation
 })
 
+export const randomMotivation = (motivation) => ({
+	type: RANDOM_MOTIVATION,
+	payload: motivation
+})
+
+export const newRandomMotivation = (motivation) => (dispatch) => {
+	dispatch(randomMotivation(motivation))
+}
 
 export const getMotivations = () => (dispatch) => {
 	

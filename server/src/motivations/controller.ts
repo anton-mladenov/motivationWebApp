@@ -17,25 +17,25 @@ export default class MotivationController {
 		return { allMotivations }
 	}
 
-	// get a RANDOM motivation
-	// @Authorized()
+	// // get a RANDOM motivation
+	// // @Authorized()
 	// @Get("/motivations/random")
 	// async getRandomMotivation() {
-		// da ne zabravq izteglq random mot's za konkretniq sign-at user, a ne ot vsichki user-i, kakto e sega
-		// sushto taka da sloja http kodove na vsichki request-i
+	// 	// da ne zabravq izteglq random mot's za konkretniq sign-at user, a ne ot vsichki user-i, kakto e sega
+	// 	// sushto taka da sloja http kodove na vsichki request-i
 		
-		// let numbero: number = 0
+	// 	let numbero = 0
 
-		// let motIds = await Motivations.find({ select: ["id"]})
-		// console.log("motIds: ", motIds)
-		// let randomId = await randomizer(motIds)
-		// console.log("randomId: ", typeof randomId.id, randomId.id)
-		// numbero = randomId.id
+	// 	let motIds = await Motivations.find({ select: ["id"]})
+	// 	console.log("motIds: ", motIds)
+	// 	let randomId = await randomizer(motIds)
+	// 	console.log("randomId: ", typeof randomId.id, randomId.id)
+	// 	numbero = randomId.id
 
-		// console.log("numbero: ",typeof numbero[0], numbero)
-		// console.log(await Motivations.findOne(numbero))
-		// console.log( Object.keys(Motivations.findOne(numbero)))
-		// return await Motivations.findOne(numbero)	
+	// 	console.log("numbero: ",typeof numbero[0], numbero)
+	// 	console.log(await Motivations.findOne(numbero))
+	// 	console.log( Object.keys(Motivations.find( { where: { id: 2 }})))
+	// 	return await Motivations.findOne(numbero)	
 	// }
 
 	// get a PARTICULAR motivation
