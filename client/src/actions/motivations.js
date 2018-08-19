@@ -29,14 +29,15 @@ export const randomMotivation = (motivation) => ({
 	payload: motivation
 })
 
-export const newRandomMotivation = (motivation) => (dispatch) => {
-	dispatch(randomMotivation(motivation))
-}
+export const getOneMotivation = (motivation) => ({
+	type: GET_ONE_MOTIVATION,
+	payload: motivation
+})
 
 export const getMotivations = () => (dispatch) => {
-	
+
 	// tuk da sloja getState i da vzeme jwt na current user-a
-	
+
 	request
 		.get(`${baseUrl}/motivations`)
 		// tuka da set-na authorization with jwt-to
@@ -44,9 +45,9 @@ export const getMotivations = () => (dispatch) => {
 }
 
 export const addMotivation = (newMotivation) => (dispatch) => {
-		
+
 	// tuk da sloja getState i da vzeme jwt na current user-a
-	
+
 	request
 		.post(`${baseUrl}/motivations`)
 		// tuka da set-na authorization with jwt-to
@@ -66,3 +67,23 @@ export const addMotivation = (newMotivation) => (dispatch) => {
 		})
 }
 
+export const newRandomMotivation = (motivation) => (dispatch) => {
+	dispatch(randomMotivation(motivation))
+}
+
+export const getMotivation = (id) => (dispatch) => {
+	// tuk da sloja getState i da vzeme jwt na current user-a
+
+	request
+		.get(`${baseUrl}/motivations/${id}`)
+		.then(res => dispatch(getOneMotivation(res.body)))
+		.catch(err => {
+			if (err.status === 400) {
+				// dispatch(userLoginFailed(err.response.body.message))
+				console.log(err.response.body.errors[0].constraints)
+			}
+			else {
+				console.error(err)
+			}
+		})
+}

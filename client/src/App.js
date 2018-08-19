@@ -6,30 +6,32 @@ import Dashboard from "./components/Dashboard/Dashboard"
 import AddNewMotivation from "./components/Motivations/AddNewMotivation"
 import Homepage from "./components/Homepage/Homepage"
 import AllMotivations from "./components/Motivations/AllMotivations"
+import OneMotivation from "./components/Motivations/OneMotivation"
 
 class App extends Component {
-  render() {
-    return (
-		<Router>
-		<div className="App">
+	render() {
+		return (
+			<Router>
+				<div className="App">
 
-			<Wrapper>
-			<Title>
-			Welcome to Motivact
-			</Title>
-			</Wrapper>
+					<Wrapper>
+						<Title>
+							Welcome to Motivact
+						</Title>
+					</Wrapper>
 
-			<main>
-				<Route exact path="/dashboard" component={Dashboard} />
-				<Route exact path="/new" component={AddNewMotivation} />
-				<Route exact path="/homepage" component={Homepage} />
-				<Route exact path="/all" component={AllMotivations} />
-			</main>
+					<main>
+						<Route exact path="/dashboard" component={Dashboard} />
+						<Route exact path="/new" component={AddNewMotivation} />
+						<Route exact path="/homepage" component={Homepage} />
+						<Route exact path="/all" component={AllMotivations} />
+						<Route exact path="/one/:id" component={OneMotivation} />
+					</main>
 
-		</div>
-		</Router>
-    );
-  }
+				</div>
+			</Router>
+		);
+	}
 }
 
 export default App;

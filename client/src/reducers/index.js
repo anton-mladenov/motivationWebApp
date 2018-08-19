@@ -4,12 +4,14 @@ import signUp from "./signUp"
 import login from "./login"
 import motivations from "./motivations"
 import randomMotivation from "./randomMotivation"
+import oneMotivation from "./oneMotivation"
 
 export default {
-	currentUser,
+	motivations,
+	oneMotivation,
+	randomMotivation,
 	signUp,
 	login,
-	motivations,
-	randomMotivation
+	currentUser
 }
 
