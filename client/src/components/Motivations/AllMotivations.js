@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { Title2 } from "../../lib/styledComponentsLib"
-import { getMotivations } from "../../actions/motivations"
+import { getMotivations, addMotivation } from "../../actions/motivations"
+import AddNewMotivation from "./AddNewMotivation"
 
 class AllMotivations extends Component {
-	
+
 	state = {
 		value: ""
 	}
@@ -13,33 +14,34 @@ class AllMotivations extends Component {
 		this.props.getMotivations()
 	}
 
+	addNewMotivation = (motivation) => {
+		console.log("sending a new motivation")
+		this.props.addMotivation(motivation)
+	}
+
 	randomizer = (array) => {
 		return array.splice(Math.floor(Math.random() * array.length), 1)[0]
-	}  
-	
+	}
+
 	render() {
 
 		const { motivations } = this.props
-		let aaa = this.randomizer(motivations)
 
 		return (
-		<div>
-			
-			{
-				// console.log(motivations)
-				aaa && console.log(aaa.motivation)
-			}
+			<div>
 
-			{ !motivations && <p> "Loading ..." </p> }
+				{!motivations && <p> "Loading ..." </p>}
 
-			{ motivations && motivations.map(mot => 
-				<div key={mot.id}>
-				<Title2> {mot.motivation} </Title2>
-				</div>
+				<AddNewMotivation onSubmit={this.addNewMotivation} />
+
+				{motivations && motivations.map(mot =>
+					<div key={mot.id}>
+						<Title2> {mot.motivation} </Title2>
+					</div>
 				)
-			}
+				}
 
-		</div>
+			</div>
 		)
 	}
 }
@@ -49,4 +51,4 @@ const mapStateToProps = state => ({
 	motivations: state.motivations
 })
 
-export default connect(mapStateToProps, { getMotivations })(AllMotivations)
+export default connect(mapStateToProps, { getMotivations, addMotivation })(AllMotivations)

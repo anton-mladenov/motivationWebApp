@@ -6,6 +6,16 @@ class OneMotivation extends Component {
 
 	motivationId = parseInt(this.props.match.params.id, 10)
 
+	state = {
+		edit: false
+	}
+
+	toggleEdit = () => {
+		this.setState({
+			edit: !this.state.edit
+		})
+	}
+
 	componentDidMount() {
 		this.props.getMotivation(this.motivationId)
 	}
@@ -16,10 +26,14 @@ class OneMotivation extends Component {
 
 		return (
 			<div>
-				<div>
-					<h6> {oneMotivation.id} </h6>
-					<h2> {oneMotivation.motivation} </h2>
-				</div>
+				{
+
+					<div>
+						<h6> {oneMotivation.id} </h6>
+						<h2> {oneMotivation.motivation} </h2>
+					</div>
+				}
+
 			</div>
 		)
 	}

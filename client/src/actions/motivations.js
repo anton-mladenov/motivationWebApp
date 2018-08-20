@@ -47,19 +47,19 @@ export const getMotivations = () => (dispatch) => {
 export const addMotivation = (newMotivation) => (dispatch) => {
 
 	// tuk da sloja getState i da vzeme jwt na current user-a
-
+	console.log("sending new motivation to the back-end")
 	request
 		.post(`${baseUrl}/motivations`)
 		// tuka da set-na authorization with jwt-to
 		// .set('Content-Type', 'application/json')
 		.send({
-			motivation: newMotivation
+			motivation: newMotivation.motivation
 		})
 		.then(res => dispatch(addNewMotivation(res.body)))
 		.catch(err => {
 			if (err.status === 400) {
 				// dispatch(userLoginFailed(err.response.body.message))
-				console.log(err.response.body.errors[0].constraints)
+				console.log("post request error: ", err.response.body.errors[0].constraints)
 			}
 			else {
 				console.error(err)
