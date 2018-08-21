@@ -1,4 +1,4 @@
-import { GET_ALL_MOTIVATIONS, ADD_MOTIVATION, EDIT_MOTIVATION } from "../actions/motivations"
+import { GET_ALL_MOTIVATIONS, ADD_MOTIVATION, EDIT_MOTIVATION, DELETE_MOTIVATION } from "../actions/motivations"
 
 let initialState = []
 
@@ -22,6 +22,9 @@ export default function (state = initialState, action) {
 					return mot
 				}
 			})
+
+		case DELETE_MOTIVATION:
+			return state.filder(motivation => motivation.id !== action.payload)
 
 		default:
 			return state

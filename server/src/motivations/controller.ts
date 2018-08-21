@@ -1,4 +1,4 @@
-import { JsonController, Get, Param, Body, NotFoundError, HttpCode, Post, Patch, BodyParam, BadRequestError, Delete } from 'routing-controllers'
+import { JsonController, Get, Param, Body, NotFoundError, BodyParam, HttpCode, Post, Patch, BadRequestError, Delete } from 'routing-controllers'
 import Motivations from './entity'
 // import {getRepository} from 'typeorm'
 
@@ -79,13 +79,15 @@ export default class MotivationController {
 	}
 
 	// @Authorized()
-	@Delete("/motivations/:id")
+	@Delete("/motivations/")
 	async deleteSingleMotivation(
-		@Param("id") id: number
+		@BodyParam("id") id: number
 	) {
 		let singleMotivation = await Motivations.findOne(id)
-		if (singleMotivation) return await Motivations.remove(singleMotivation)
+
 		if (!singleMotivation) return "No Motivation found with this ID"
+
+		if (singleMotivation) return await Motivations.remove(singleMotivation)
 	}
 
 }

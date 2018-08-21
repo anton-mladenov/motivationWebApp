@@ -1,4 +1,4 @@
-import { GET_ONE_MOTIVATION, EDIT_MOTIVATION } from "../actions/motivations"
+import { GET_ONE_MOTIVATION, EDIT_MOTIVATION, DELETE_MOTIVATION } from "../actions/motivations"
 
 // let initialState = []
 
@@ -16,6 +16,10 @@ export default function (state = null, action) {
 			} else {
 				return state
 			}
+
+		case DELETE_MOTIVATION:
+			console.log("delete from reducer: ", action.payload)
+			return state.filder(motivation => motivation.id !== action.payload)
 
 		default:
 			return state

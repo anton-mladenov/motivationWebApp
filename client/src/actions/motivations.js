@@ -39,6 +39,13 @@ export const editOneMotivation = (motivation) => ({
 	payload: motivation
 })
 
+export const deleteOneMotivation = (motivationId) => ({
+	type: DELETE_MOTIVATION,
+	payload: motivationId
+})
+
+
+
 export const getMotivations = () => (dispatch) => {
 
 	// tuk da sloja getState i da vzeme jwt na current user-a
@@ -110,5 +117,25 @@ export const editMotivation = (id, updatedMotivation) => (dispatch) => {
 				console.error(err)
 			}
 		})
+}
 
+export const deleteMotivation = (motivationId) => (dispatch) => {
+
+	console.log("delete from action creator: ", motivationId)
+
+	request
+		.delete(`${baseUrl}/motivations`)
+		.send({
+			id: motivationId
+		})
+		.then(res => dispatch(deleteOneMotivation(res.body)))
+		.catch(err => {
+			if (err.status === 400) {
+				// dispatch(userLoginFailed(err.response.body.message))
+				console.log("patch request error: ", err.response.body.errors[0].constraints)
+			}
+			else {
+				console.error(err)
+			}
+		})
 }

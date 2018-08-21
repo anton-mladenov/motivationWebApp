@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getMotivation, editMotivation } from "../../actions/motivations"
+import { getMotivation, editMotivation, deleteMotivation } from "../../actions/motivations"
 import MotivationForm from "./MotivationForm"
 
 class OneMotivationDetails extends Component {
@@ -28,6 +28,11 @@ class OneMotivationDetails extends Component {
 		this.toggleEdit()
 	}
 
+	deleteMotivation = () => {
+		this.props.deleteMotivation(this.motivationId)
+		// tuk redirect-vam kum lista s motivations
+	}
+
 	render() {
 
 		const { oneMotivation } = this.props
@@ -46,6 +51,7 @@ class OneMotivationDetails extends Component {
 					!this.state.edit &&
 					<div>
 						<button onClick={this.toggleEdit} > Edit </button>
+						<button onClick={this.deleteMotivation} > Delete </button>
 						<h6> {oneMotivation.id} </h6>
 						<h2> {oneMotivation.motivation} </h2>
 					</div>
@@ -60,4 +66,4 @@ const mapStateToProps = state => ({
 	oneMotivation: state.oneMotivation
 })
 
-export default connect(mapStateToProps, { getMotivation, editMotivation })(OneMotivationDetails)
+export default connect(mapStateToProps, { getMotivation, editMotivation, deleteMotivation })(OneMotivationDetails)
