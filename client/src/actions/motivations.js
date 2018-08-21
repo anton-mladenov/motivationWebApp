@@ -34,6 +34,11 @@ export const getOneMotivation = (motivation) => ({
 	payload: motivation
 })
 
+export const editOneMotivation = (motivation) => ({
+	type: EDIT_MOTIVATION,
+	payload: motivation
+})
+
 export const getMotivations = () => (dispatch) => {
 
 	// tuk da sloja getState i da vzeme jwt na current user-a
@@ -86,4 +91,24 @@ export const getMotivation = (id) => (dispatch) => {
 				console.error(err)
 			}
 		})
+}
+
+export const editMotivation = (id, updatedMotivation) => (dispatch) => {
+
+	// console.log("sending update motivation to back-end", updatedMotivation)
+
+	request
+		.patch(`${baseUrl}/motivations/${id}`)
+		.send(updatedMotivation)
+		.then(res => dispatch(editOneMotivation(res.body)))
+		.catch(err => {
+			if (err.status === 400) {
+				// dispatch(userLoginFailed(err.response.body.message))
+				console.log("patch request error: ", err.response.body.errors[0].constraints)
+			}
+			else {
+				console.error(err)
+			}
+		})
+
 }

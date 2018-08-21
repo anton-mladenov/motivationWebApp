@@ -1,13 +1,21 @@
-import { GET_ONE_MOTIVATION } from "../actions/motivations"
+import { GET_ONE_MOTIVATION, EDIT_MOTIVATION } from "../actions/motivations"
 
-let initialState = []
+// let initialState = []
 
-export default function (state = initialState, action) {
+export default function (state = null, action) {
 
 	switch (action.type) {
 
 		case GET_ONE_MOTIVATION:
 			return action.payload
+
+		case EDIT_MOTIVATION:
+			if (action.payload.id === state.id) {
+				// console.log("from the EDIT reducer", action.payload.motivation)
+				return action.payload
+			} else {
+				return state
+			}
 
 		default:
 			return state

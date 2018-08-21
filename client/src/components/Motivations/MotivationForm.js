@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 // import { Title2 } from "../../lib/styledComponentsLib"
 // import { addMotivation } from "../../actions/motivations"
 
-class AddNewMotivation extends Component {
+class MotivationForm extends Component {
 
 	state = {}
 
@@ -30,13 +30,17 @@ class AddNewMotivation extends Component {
 
 	render() {
 
+		const initialValues = this.props.initialValues || {}
+
 		return (
 			<div>
 
 				<form onSubmit={this.handleSubmit}>
 					<label>
 						Add A New Motivation
-					<input type="text" name="motivation" ref={this.myRef} value={this.state.value} onChange={this.handleChange} />
+					<input type="text" name="motivation" ref={this.myRef} value={
+							this.state.motivation !== undefined ? this.state.motivation : initialValues.motivation
+						} onChange={this.handleChange} />
 					</label>
 					<input type="submit" value="Submit" />
 				</form>
@@ -47,4 +51,4 @@ class AddNewMotivation extends Component {
 }
 
 // export default connect(null, { addMotivation })(AddNewMotivation)
-export default connect(null, {})(AddNewMotivation)
+export default connect(null, {})(MotivationForm)

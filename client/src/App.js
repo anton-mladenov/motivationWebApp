@@ -3,10 +3,10 @@ import './App.css';
 import { Title, Wrapper } from "./lib/styledComponentsLib"
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Dashboard from "./components/Dashboard/Dashboard"
-import AddNewMotivation from "./components/Motivations/AddNewMotivation"
+import MotivationForm from "./components/Motivations/MotivationForm"
 import Homepage from "./components/Homepage/Homepage"
 import AllMotivations from "./components/Motivations/AllMotivations"
-import OneMotivation from "./components/Motivations/OneMotivation"
+import OneMotivationDetails from "./components/Motivations/OneMotivationDetails"
 
 class App extends Component {
 	render() {
@@ -22,10 +22,10 @@ class App extends Component {
 
 					<main>
 						<Route exact path="/dashboard" component={Dashboard} />
-						<Route exact path="/new" component={AddNewMotivation} />
+						<Route exact path="/new" component={MotivationForm} />
 						<Route exact path="/homepage" component={Homepage} />
 						<Route exact path="/all" component={AllMotivations} />
-						<Route exact path="/one/:id" component={OneMotivation} />
+						<Route exact path="/all/:id" component={OneMotivationDetails} />
 					</main>
 
 				</div>

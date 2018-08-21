@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Title2 } from "../../lib/styledComponentsLib"
 import { getMotivations, addMotivation } from "../../actions/motivations"
-import AddNewMotivation from "./AddNewMotivation"
+import MotivationForm from "./MotivationForm"
 
 class AllMotivations extends Component {
 
@@ -32,7 +32,7 @@ class AllMotivations extends Component {
 
 				{!motivations && <p> "Loading ..." </p>}
 
-				<AddNewMotivation onSubmit={this.addNewMotivation} />
+				<MotivationForm onSubmit={this.addNewMotivation} />
 
 				{motivations && motivations.map(mot =>
 					<div key={mot.id}>

@@ -23,7 +23,7 @@ export default class MotivationController {
 	// async getRandomMotivation() {
 	// 	// da ne zabravq izteglq random mot's za konkretniq sign-at user, a ne ot vsichki user-i, kakto e sega
 	// 	// sushto taka da sloja http kodove na vsichki request-i
-		
+
 	// 	let numbero = 0
 
 	// 	let motIds = await Motivations.find({ select: ["id"]})
@@ -47,12 +47,12 @@ export default class MotivationController {
 		let singleMotivation = await Motivations.findOne(id)
 		return singleMotivation
 	}
-	
+
 	// @Authorized()
 	@Post("/motivations")
 	@HttpCode(201)
 	async createMotivation(
-	@Body() body: Motivations
+		@Body() body: Motivations
 	) {
 		const entity = Motivations.create()
 		entity.motivation = body.motivation
@@ -64,19 +64,20 @@ export default class MotivationController {
 	@Patch("/motivations/:id")
 	@HttpCode(200)
 	async updateMotivation(
-	@Param("id") id: number,
-	@BodyParam("motivation") motivation: string
+		@Param("id") id,
+		@Body() motivationBody
 	) {
+		// console.log("getting something from the back-end ..... HAHAHAHAHAHAH ++++++++")
 		let motivationToEdit = await Motivations.findOne(id)
 
 		if (!motivationToEdit) throw new NotFoundError("There's no motivation found with this ID, fam!")
-		if (!motivation) throw new BadRequestError("That's a very bad request, bro!")
+		if (!motivationBody) throw new BadRequestError("That's a very bad request, bro!")
 
-		motivationToEdit.motivation = await motivation
+		motivationToEdit.motivation = await motivationBody.motivation
 
 		return motivationToEdit.save()
 	}
-	
+
 	// @Authorized()
 	@Delete("/motivations/:id")
 	async deleteSingleMotivation(
