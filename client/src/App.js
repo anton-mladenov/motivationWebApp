@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Title, Wrapper } from "./lib/styledComponentsLib"
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Dashboard from "./components/Dashboard/Dashboard"
 import MotivationForm from "./components/Motivations/MotivationForm"
 import Homepage from "./components/Homepage/Homepage"
@@ -21,11 +21,13 @@ class App extends Component {
 					</Wrapper>
 
 					<main>
-						<Route exact path="/dashboard" component={Dashboard} />
-						<Route exact path="/new" component={MotivationForm} />
-						<Route exact path="/homepage" component={Homepage} />
-						<Route exact path="/all" component={AllMotivations} />
-						<Route exact path="/all/:id" component={OneMotivationDetails} />
+						<Switch>
+							<Route exact path="/" component={Homepage} />
+							<Route exact path="/dashboard" component={Dashboard} />
+							<Route exact path="/all" component={AllMotivations} />
+							<Route exact path="/all/:id" component={OneMotivationDetails} />
+							<Route exact path="/new" component={MotivationForm} />
+						</Switch>
 					</main>
 
 				</div>
