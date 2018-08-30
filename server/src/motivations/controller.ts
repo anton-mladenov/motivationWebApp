@@ -1,10 +1,10 @@
 import { JsonController, Get, Param, Body, NotFoundError, BodyParam, HttpCode, Post, Patch, BadRequestError, Delete } from 'routing-controllers'
 import Motivation from './entity';
-// import {getRepository} from 'typeorm'
+import { getManager, getRepository, getConnection } from "typeorm";
 
-let randomizer = (array) => {
-	return Math.floor(Math.random() * array.length)
-}
+// let randomizer = (array) => {
+// 	return Math.floor(Math.random() * array.length)
+// }
 
 @JsonController()
 export default class MotivationController {
@@ -24,26 +24,43 @@ export default class MotivationController {
 		// da ne zabravq izteglq random mot's za konkretniq sign-at user, a ne ot vsichki user-i, kakto e sega
 		// sushto taka da sloja http kodove na vsichki request-i
 
-		let motIds = await Motivation.find({
-			select: ["id"]
-		})
-		console.log("motIds: ", typeof motIds, motIds)
+		// const randomMotivation: Motivation | undefined = await getManager()
+		// return await getManager()
+		// 	.createQueryBuilder(Motivation, "motivation")
+		// 	.orderBy("RANDOM()") 
+		// 	// .limit(1)
+		// 	.getMany();
 
-		let randomMot = await randomizer(motIds)
-		console.log("randomMot: ", typeof randomMot, randomMot)
+		return await getConnection()
+			.createQueryBuilder()
+			.select("id")
+			.from(Motivation, "motivation")
+			.orderBy("RANDOM()")
+			.limit(1)
+			.getOne()
 
-		let randomMotId = motIds[randomMot].id
-		console.log("randomMotId: ", typeof randomMotId, randomMotId)
+		// console.log("randomMotivation", randomMotivation.motivation)
+		// return randomMotivation
+		// let motIds = await Motivation.find({
+		// 	select: ["id"]
+		// })
+		// console.log("motIds: ", typeof motIds, motIds)
 
-		let randomMotQuery: any = await Motivation.find({
-			select: ["id"],
-			where: {
-				id: randomMotId
-			}
-		})
-		console.log("randomMotQuery: ", randomMotQuery)
+		// let randomMot = await randomizer(motIds)
+		// console.log("randomMot: ", typeof randomMot, randomMot)
 
-		return randomMotQuery
+		// let randomMotId = motIds[randomMot].id
+		// console.log("randomMotId: ", typeof randomMotId, randomMotId)
+
+		// let randomMotQuery: any = await Motivation.find({
+		// 	select: ["id"],
+		// 	where: {
+		// 		id: randomMotId
+		// 	}
+		// })
+		// console.log("randomMotQuery: ", randomMotQuery)
+
+		// return randomMotQuery
 	}
 
 	// get a PARTICULAR motivation

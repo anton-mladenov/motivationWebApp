@@ -17,6 +17,9 @@ class RandomMotivation extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
+
+		// moga da refactor-na tazi chast taka che da polzvam rekursiq za proverkata dali predhodnoto e kato segashnoto
+
 		if (this.props.randomNum === prevProps.randomNum) {
 			// console.log("componentDidUpdate - INSIDE 1st IF: ", this.props.randomNum)
 
