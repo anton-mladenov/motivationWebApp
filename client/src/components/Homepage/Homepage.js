@@ -8,9 +8,9 @@ class Homepage extends Component {
 
 	render() {
 
-		const { signUp } = this.props
+		const { signUp, currentUser } = this.props
 
-		if (signUp.success) {
+		if (signUp.success || currentUser) {
 			return (
 				<Redirect to="/dashboard" />
 			)
@@ -44,6 +44,7 @@ class Homepage extends Component {
 
 const mapStateToProps = (state) => ({
 	signUp: state.signUp,
+	currentUser: state.currentUser
 })
 
 export default connect(mapStateToProps)(Homepage)
