@@ -4,44 +4,61 @@ export default class SignUpForm extends Component {
 
 	state = {}
 
-	handleChange = () => { }
+	handleChange = (event) => {
+		const { name, value } = event.target
 
-	handleSubmit = () => { }
+		this.setState({
+			[name]: value
+		})
+	}
+
+	handleSubmit = (event) => {
+		event.preventDefault()
+		this.props.onSubmit(this.state)
+	}
 
 	render() {
 		return (
 			<div>
 
-				<form>
+				<form onSubmit={this.handleSubmit} >
 
 					<div>
 						<label>
 							Email:
-							<input />
+							<input type="email" name="email" value={this.state.email || ""} onChange={this.handleChange} />
 						</label>
 					</div>
 
-					<div>
+					{/* <div>
 						<label>
-							Email:
-							<input />
+							Username:
+							<input type="username" name="username" value={this.state.username || ""} onChange={this.handleChange} />
 						</label>
-					</div>
+					</div> */}
 
 					<div>
 						<label>
 							Password:
-							<input />
+							<input type="password" name="password" value={this.state.password || ""} onChange={this.handleChange} />
 						</label>
 					</div>
 
 					<div>
 						<label>
 							Confirm Password:
-							<input />
+							<input type="password" name="confirmPassword" value={this.state.confirmPassword || ""} onChange={this.handleChange} />
 						</label>
 					</div>
 
+					{
+						this.state.password &&
+						this.state.confirmPassword &&
+						this.state.password !== this.state.confirmPassword &&
+						<p> The Passwords Do NOT Match </p>
+					}
+
+					<button type="submit" > Create Account </button>
 				</form>
 
 			</div>
