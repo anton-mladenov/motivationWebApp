@@ -43,7 +43,7 @@ class Homepage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	signUp: state.signUp
+	signUp: state.signUp,
 })
 
 export default connect(mapStateToProps)(Homepage)

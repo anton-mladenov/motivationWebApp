@@ -37,14 +37,7 @@ export default class SignInForm extends Component {
 						</label>
 					</div>
 
-					{
-						this.state.password &&
-						this.state.confirmPassword &&
-						this.state.password !== this.state.confirmPassword &&
-						<p> The Passwords Do NOT Match </p>
-					}
-
-					<button type="submit" > Create Account </button>
+					<button type="submit" > Sign In </button>
 				</form>
 
 			</div>

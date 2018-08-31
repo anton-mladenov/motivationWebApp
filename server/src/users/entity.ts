@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
 import { BaseEntity } from 'typeorm/repository/BaseEntity'
-import { Length, IsEmail, MinLength, IsString } from 'class-validator';
+import { IsEmail, MinLength, IsString } from 'class-validator';
 import { Exclude } from 'class-transformer'
 import * as bcrypt from 'bcrypt'
 import Motivations from "../motivations/entity"

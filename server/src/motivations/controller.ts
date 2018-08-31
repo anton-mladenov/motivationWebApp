@@ -1,6 +1,6 @@
 import { JsonController, Get, Param, Body, NotFoundError, BodyParam, HttpCode, Post, Patch, BadRequestError, Delete } from 'routing-controllers'
 import Motivation from './entity';
-import { getManager, getRepository, getConnection } from "typeorm";
+import { getConnection } from "typeorm";
 
 // let randomizer = (array) => {
 // 	return Math.floor(Math.random() * array.length)
