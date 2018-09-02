@@ -3,6 +3,7 @@ import SignUp from "../Account/SignUp"
 import SignIn from "../Account/SignIn"
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import Header from "../Header/Header"
 
 class Homepage extends Component {
 
@@ -10,7 +11,7 @@ class Homepage extends Component {
 
 		const { signUp, currentUser } = this.props
 
-		if (signUp.success || currentUser) {
+		if (currentUser) {
 			return (
 				<Redirect to="/dashboard" />
 			)
@@ -18,6 +19,8 @@ class Homepage extends Component {
 
 		return (
 			<div>
+
+				<Header />
 
 				<div>
 					<h1> Hello World </h1>
@@ -43,7 +46,7 @@ class Homepage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	signUp: state.signUp,
+	signUp: state.signUp.success,
 	currentUser: state.currentUser !== null
 })
 

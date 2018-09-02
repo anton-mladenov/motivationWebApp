@@ -12,9 +12,9 @@ class Header extends Component {
 
 	render() {
 
-		const { authenticated, loginSuccess } = this.props
+		const { signUp, currentUser } = this.props
 
-		if (authenticated) {
+		if (signUp.success || currentUser !== null) {
 			return (
 				<div>
 
@@ -27,9 +27,7 @@ class Header extends Component {
 
 				</div>
 			)
-		}
-
-		if (authenticated) {
+		} else {
 			return (
 				<div>
 
@@ -37,7 +35,6 @@ class Header extends Component {
 						<Title>
 							Welcome to Motivact
 						</Title>
-						<button onClick={this.handleLogOut} > Log Out </button>
 					</Wrapper>
 
 				</div>
@@ -47,11 +44,8 @@ class Header extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	signUpSuccess: state.signUp.success,
-	signUpError: state.signUp.error,
-	loginSuccess: state.currentUser,
-	loginFailure: state.login.error,
-	authenticated: state.currentUser !== null
+	signUp: state.signUp,
+	currentUser: state.currentUser
 })
 
 export default connect(mapStateToProps, { logout })(Header)

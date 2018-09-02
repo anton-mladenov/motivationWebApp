@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Title, Wrapper } from "./lib/styledComponentsLib"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Dashboard from "./components/Dashboard/Dashboard"
 import MotivationForm from "./components/Motivations/MotivationForm"
 import Homepage from "./components/Homepage/Homepage"
 import AllMotivations from "./components/Motivations/AllMotivations"
 import OneMotivationDetails from "./components/Motivations/OneMotivationDetails"
+import Header from "./components/Header/Header"
 
 class App extends Component {
 	render() {
@@ -14,11 +14,7 @@ class App extends Component {
 			<Router>
 				<div className="App">
 
-					<Wrapper>
-						<Title>
-							Welcome to Motivact
-						</Title>
-					</Wrapper>
+					{/* <Header /> */}
 
 					<main>
 						<Switch>
