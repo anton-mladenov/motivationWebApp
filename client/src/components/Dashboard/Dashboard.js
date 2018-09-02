@@ -12,9 +12,9 @@ class DashboardComponent extends Component {
 
 	render() {
 
-		const { motivations, signUp, currentUser } = this.props
+		const { motivations, signUp, noCurrentUser } = this.props
 
-		if (!signUp.success || !currentUser) {
+		if (signUp.error || signUp === {} || noCurrentUser) {
 			return (
 				<Redirect to="/" />
 			)
@@ -25,11 +25,12 @@ class DashboardComponent extends Component {
 
 				{!motivations && <p> "Loading ..." </p>}
 
-				{motivations && motivations.map(mot =>
-					<div key={mot.id}>
-						<Title2> {mot.motivation} </Title2>
-					</div>
-				)
+				{
+					motivations && motivations.map(mot =>
+						<div key={mot.id}>
+							<Title2> {mot.motivation} </Title2>
+						</div>
+					)
 				}
 
 			</div>
@@ -40,7 +41,7 @@ class DashboardComponent extends Component {
 const mapStateToProps = state => ({
 	motivations: state.motivations,
 	signUp: state.signUp,
-	currentUser: state.currentUser
+	noCurrentUser: state.currentUser === null
 })
 
 export default connect(mapStateToProps, { getMotivations })(DashboardComponent)

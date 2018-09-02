@@ -44,7 +44,7 @@ class Homepage extends Component {
 
 const mapStateToProps = (state) => ({
 	signUp: state.signUp,
-	currentUser: state.currentUser
+	currentUser: state.currentUser !== null
 })
 
 export default connect(mapStateToProps)(Homepage)
