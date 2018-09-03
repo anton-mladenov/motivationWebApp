@@ -71,22 +71,25 @@ export const getMotivations = () => (dispatch, getState) => {
 		})
 }
 
-export const addMotivation = (newMotivation) => (dispatch) => {
+export const addMotivation = (newMotivation) => (dispatch, getState) => {
 
-	// tuk da sloja getState i da vzeme jwt na current user-a
-	console.log("sending new motivation to the back-end")
+	const state = getState()
+	if (state.currentUser === null || state.currentUser === {}) return null
+	const jwt = state.currentUser.jwt
+
+	if (isExpired(jwt)) return dispatch(logout())
+
 	request
 		.post(`${baseUrl}/motivations`)
-		// tuka da set-na authorization with jwt-to
-		// .set('Content-Type', 'application/json')
+		.set("Authorization", `Bearer ${jwt}`)
 		.send({
 			motivation: newMotivation.motivation
 		})
 		.then(res => dispatch(addNewMotivation(res.body)))
 		.catch(err => {
 			if (err.status === 400) {
-				// dispatch(userLoginFailed(err.response.body.message))
 				console.log("post request error: ", err.response.body.errors[0].constraints)
+				dispatch(userLoginFailed(err.response.body.message))
 			}
 			else {
 				console.error(err)
@@ -98,16 +101,22 @@ export const newRandomMotivation = (motivation) => (dispatch) => {
 	dispatch(randomMotivation(motivation))
 }
 
-export const getMotivation = (id) => (dispatch) => {
-	// tuk da sloja getState i da vzeme jwt na current user-a
+export const getMotivation = (id) => (dispatch, getState) => {
+
+	const state = getState()
+	if (state.currentUser === null || state.currentUser === {}) return null
+	const jwt = state.currentUser.jwt
+
+	if (isExpired(jwt)) return dispatch(logout())
 
 	request
 		.get(`${baseUrl}/motivations/${id}`)
+		.set("Authorization", `Bearer ${jwt}`)
 		.then(res => dispatch(getOneMotivation(res.body)))
 		.catch(err => {
 			if (err.status === 400) {
-				// dispatch(userLoginFailed(err.response.body.message))
-				console.log(err.response.body.errors[0].constraints)
+				console.log("post request error: ", err.response.body.errors[0].constraints)
+				dispatch(userLoginFailed(err.response.body.message))
 			}
 			else {
 				console.error(err)
@@ -115,18 +124,23 @@ export const getMotivation = (id) => (dispatch) => {
 		})
 }
 
-export const editMotivation = (id, updatedMotivation) => (dispatch) => {
+export const editMotivation = (id, updatedMotivation) => (dispatch, getState) => {
 
-	// console.log("sending update motivation to back-end", updatedMotivation)
+	const state = getState()
+	if (state.currentUser === null || state.currentUser === {}) return null
+	const jwt = state.currentUser.jwt
+
+	if (isExpired(jwt)) return dispatch(logout())
 
 	request
 		.patch(`${baseUrl}/motivations/${id}`)
+		.set("Authorization", `Bearer ${jwt}`)
 		.send(updatedMotivation)
 		.then(res => dispatch(editOneMotivation(res.body)))
 		.catch(err => {
 			if (err.status === 400) {
-				// dispatch(userLoginFailed(err.response.body.message))
-				console.log("patch request error: ", err.response.body.errors[0].constraints)
+				console.log("post request error: ", err.response.body.errors[0].constraints)
+				dispatch(userLoginFailed(err.response.body.message))
 			}
 			else {
 				console.error(err)
@@ -134,20 +148,25 @@ export const editMotivation = (id, updatedMotivation) => (dispatch) => {
 		})
 }
 
-export const deleteMotivation = (motivationId) => (dispatch) => {
+export const deleteMotivation = (motivationId) => (dispatch, getState) => {
 
-	console.log("delete from action creator: ", motivationId)
+	const state = getState()
+	if (state.currentUser === null || state.currentUser === {}) return null
+	const jwt = state.currentUser.jwt
+
+	if (isExpired(jwt)) return dispatch(logout())
 
 	request
 		.delete(`${baseUrl}/motivations`)
+		.set("Authorization", `Bearer ${jwt}`)
 		.send({
 			id: motivationId
 		})
 		.then(res => dispatch(deleteOneMotivation(res.body)))
 		.catch(err => {
 			if (err.status === 400) {
-				// dispatch(userLoginFailed(err.response.body.message))
-				console.log("patch request error: ", err.response.body.errors[0].constraints)
+				console.log("post request error: ", err.response.body.errors[0].constraints)
+				dispatch(userLoginFailed(err.response.body.message))
 			}
 			else {
 				console.error(err)

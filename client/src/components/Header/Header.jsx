@@ -15,7 +15,7 @@ class Header extends Component {
 
 		const { signUp, currentUser } = this.props
 
-		if (signUp.success || currentUser !== null) {
+		if (currentUser !== null) {
 			return (
 				<div>
 
