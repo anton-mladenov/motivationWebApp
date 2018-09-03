@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { Title, Wrapper } from "../../lib/styledComponentsLib"
 import { connect } from 'react-redux'
 // import { Redirect } from 'react-router-dom'
-import { logout } from '../../actions/users'
+import { logout, userSignupFailed } from '../../actions/users'
 
 class Header extends Component {
 
 	handleLogOut = () => {
 		this.props.logout()
+		this.props.userSignupFailed("you have logged out after the initial sign up")
 	}
 
 	render() {
@@ -48,4 +49,4 @@ const mapStateToProps = (state) => ({
 	currentUser: state.currentUser
 })
 
-export default connect(mapStateToProps, { logout })(Header)
+export default connect(mapStateToProps, { logout, userSignupFailed })(Header)

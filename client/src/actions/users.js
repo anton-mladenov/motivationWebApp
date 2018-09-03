@@ -27,7 +27,7 @@ const userLoginFailed = (error) => ({
 	payload: error || 'Unknown error'
 })
 
-const userSignupFailed = (error) => ({
+export const userSignupFailed = (error) => ({
 	type: USER_SIGNUP_FAILED,
 	payload: error || 'Unknown error'
 })
