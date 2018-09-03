@@ -6,7 +6,8 @@ import MotivationForm from "./components/Motivations/MotivationForm"
 import Homepage from "./components/Homepage/Homepage"
 import AllMotivations from "./components/Motivations/AllMotivations"
 import OneMotivationDetails from "./components/Motivations/OneMotivationDetails"
-import Header from "./components/Header/Header"
+import SignIn from "./components/Account/SignIn"
+import SignUp from "./components/Account/SignUp"
 
 class App extends Component {
 	render() {
@@ -14,10 +15,11 @@ class App extends Component {
 			<Router>
 				<div className="App">
 
-					{/* <Header /> */}
-
 					<main>
 						<Switch>
+							<Route exact path="/login" component={SignIn} />
+							<Route exact path="/signup" component={SignUp} />
+
 							<Route exact path="/" component={Homepage} />
 							<Route exact path="/dashboard" component={Dashboard} />
 							<Route exact path="/all" component={AllMotivations} />

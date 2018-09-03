@@ -3,6 +3,7 @@ import { login } from "../../actions/users"
 import { connect } from 'react-redux'
 import SignInForm from "./SignInForm"
 import { Redirect } from 'react-router-dom'
+import Header from "../Header/Header"
 
 class SignIn extends Component {
 
@@ -21,7 +22,10 @@ class SignIn extends Component {
 		return (
 			<div>
 
+				<Header />
+
 				<h1> Sign In </h1>
+				<h4> If you already have an account you can sign in with the form below </h4>
 
 				<SignInForm onSubmit={this.handleSubmit} />
 

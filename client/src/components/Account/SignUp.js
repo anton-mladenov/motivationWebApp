@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { signup } from "../../actions/users"
 import SignUpForm from "./SignUpForm"
 import { Redirect } from 'react-router-dom'
+import Header from "../Header/Header"
 
 class SignUp extends Component {
 
@@ -16,12 +17,14 @@ class SignUp extends Component {
 
 		if (signUp.success) {
 			return (
-				<Redirect to="/dashboard" />
+				<Redirect to="/login" />
 			)
 		}
 
 		return (
 			<div>
+
+				<Header />
 
 				<h1> Create Your Account Here </h1>
 

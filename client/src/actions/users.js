@@ -17,12 +17,12 @@ export const logout = () => ({
 	type: USER_LOGOUT
 })
 
-const userLoginSuccess = (login) => ({
+export const userLoginSuccess = (login) => ({
 	type: USER_LOGIN_SUCCESS,
 	payload: login
 })
 
-const userLoginFailed = (error) => ({
+export const userLoginFailed = (error) => ({
 	type: USER_LOGIN_FAILED,
 	payload: error || 'Unknown error'
 })
@@ -32,7 +32,7 @@ export const userSignupFailed = (error) => ({
 	payload: error || 'Unknown error'
 })
 
-const userSignupSuccess = () => ({
+export const userSignupSuccess = () => ({
 	type: USER_SIGNUP_SUCCESS
 })
 

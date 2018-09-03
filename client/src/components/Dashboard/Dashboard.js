@@ -13,13 +13,7 @@ class DashboardComponent extends Component {
 
 	render() {
 
-		const { motivations, signUp, noSignUp, noCurrentUser, currentUser } = this.props
-
-		// if (noCurrentUser) {
-		// 	return (
-		// 		<Redirect to="/" />
-		// 	)
-		// }
+		const { motivations, signUp, currentUser } = this.props
 
 		if (currentUser || signUp) {
 			return (
@@ -50,8 +44,6 @@ class DashboardComponent extends Component {
 const mapStateToProps = state => ({
 	motivations: state.motivations,
 	signUp: state.signUp.success,
-	noSignUp: state.signUp.error || state.signUp === {},
-	noCurrentUser: state.currentUser === null,
 	currentUser: state.currentUser !== null
 })
 

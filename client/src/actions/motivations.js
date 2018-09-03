@@ -1,5 +1,7 @@
 import * as request from "superagent"
 import { baseUrl } from "../constants"
+import { isExpired } from "../jwt"
+import { logout, userLoginFailed } from "./users"
 
 export const ADD_MOTIVATION = "ADD_MOTIVATION"
 
@@ -46,14 +48,27 @@ export const deleteOneMotivation = (motivationId) => ({
 
 
 
-export const getMotivations = () => (dispatch) => {
+export const getMotivations = () => (dispatch, getState) => {
 
-	// tuk da sloja getState i da vzeme jwt na current user-a
+	const state = getState()
+	if (state.currentUser === null || state.currentUser === {}) return null
+	const jwt = state.currentUser.jwt
+
+	if (isExpired(jwt)) return dispatch(logout())
 
 	request
 		.get(`${baseUrl}/motivations`)
-		// tuka da set-na authorization with jwt-to
+		.set("Authorization", `Bearer ${jwt}`)
 		.then(res => dispatch(getAllMotivations(res.body)))
+		.catch(err => {
+			if (err.status === 400) {
+				console.log("post request error: ", err.response.body.errors[0].constraints)
+				dispatch(userLoginFailed(err.response.body.message))
+			}
+			else {
+				console.error("error from getMotivations from 'actions'", err)
+			}
+		})
 }
 
 export const addMotivation = (newMotivation) => (dispatch) => {

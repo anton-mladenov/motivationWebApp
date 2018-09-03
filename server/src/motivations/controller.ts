@@ -1,4 +1,4 @@
-import { JsonController, Get, Param, Body, NotFoundError, BodyParam, HttpCode, Post, Patch, BadRequestError, Delete } from 'routing-controllers'
+import { JsonController, Get, Param, Body, NotFoundError, Authorized, BodyParam, HttpCode, Post, Patch, BadRequestError, Delete } from 'routing-controllers'
 import Motivation from './entity';
 import { getConnection } from "typeorm";
 
@@ -10,7 +10,7 @@ import { getConnection } from "typeorm";
 export default class MotivationController {
 
 	// get ALL motivations
-	// @Authorized()
+	@Authorized()
 	@Get("/motivations")
 	async getAllMotivations() {
 		let allMotivations = await Motivation.find()
