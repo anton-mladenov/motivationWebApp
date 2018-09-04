@@ -1,5 +1,5 @@
 import 'reflect-metadata'
-import {createKoaServer, Action, BadRequestError} from 'routing-controllers'
+import { createKoaServer, Action, BadRequestError } from 'routing-controllers'
 import LoginController from "./logins/controller"
 import UserController from "./users/controller"
 import MotivationController from "./motivations/controller"
@@ -17,39 +17,39 @@ const app = createKoaServer({
 		UserController,
 		MotivationController
 	],
-		authorizationChecker: (action: Action) => {
-    const header: string = action.request.headers.authorization
-    if (header && header.startsWith('Bearer ')) {
-      const [ , token ] = header.split(' ')
+	authorizationChecker: (action: Action) => {
+		const header: string = action.request.headers.authorization
+		if (header && header.startsWith('Bearer ')) {
+			const [, token] = header.split(' ')
 
-      try {
-        return !!(token && verify(token))
-      }
-      catch (e) {
-        throw new BadRequestError(e)
-      }
-    }
+			try {
+				return !!(token && verify(token))
+			}
+			catch (e) {
+				throw new BadRequestError(e)
+			}
+		}
 
-    return false
-  },
-  currentUserChecker: async (action: Action) => {
-    const header: string = action.request.headers.authorization
-    if (header && header.startsWith('Bearer ')) {
-      const [ , token ] = header.split(' ')
-      
-      if (token) {
-        const {id} = verify(token)
-        return User.findOne(id)
-      }
-    }
-    return undefined
-  }
+		return false
+	},
+	currentUserChecker: async (action: Action) => {
+		const header: string = action.request.headers.authorization
+		if (header && header.startsWith('Bearer ')) {
+			const [, token] = header.split(' ')
+
+			if (token) {
+				const { id } = verify(token)
+				return User.findOne(id)
+			}
+		}
+		return undefined
+	}
 })
 
 
 setupDb()
-  .then(_ => {
-    app.listen(port);
-    console.log(`Listening on port ${port} @ ${time}`);
-  })
-  .catch(err => console.error(err))
+	.then(_ => {
+		app.listen(port);
+		console.log(`Listening on port ${port} @ ${time}`);
+	})
+	.catch(err => console.error(err))

@@ -26,7 +26,7 @@ export default class SignUpForm extends Component {
 					<div>
 						<label>
 							Email:
-							<input type="email" name="email" value={this.state.email || ""} onChange={this.handleChange} />
+							<input type="email" autoComplete="signup-form email" name="email" value={this.state.email || ""} onChange={this.handleChange} />
 						</label>
 					</div>
 
@@ -40,14 +40,14 @@ export default class SignUpForm extends Component {
 					<div>
 						<label>
 							Password:
-							<input type="password" name="password" value={this.state.password || ""} onChange={this.handleChange} />
+							<input type="password" autoComplete="signup-form new-password" name="password" value={this.state.password || ""} onChange={this.handleChange} />
 						</label>
 					</div>
 
 					<div>
 						<label>
 							Confirm Password:
-							<input type="password" name="confirmPassword" value={this.state.confirmPassword || ""} onChange={this.handleChange} />
+							<input type="password" autoComplete="signup-form new-password" name="confirmPassword" value={this.state.confirmPassword || ""} onChange={this.handleChange} />
 						</label>
 					</div>
 

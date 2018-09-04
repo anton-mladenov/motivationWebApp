@@ -13,7 +13,7 @@ class Header extends Component {
 
 	render() {
 
-		const { signUp, currentUser } = this.props
+		const { currentUser } = this.props
 
 		if (currentUser !== null) {
 			return (
@@ -45,7 +45,6 @@ class Header extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	signUp: state.signUp,
 	currentUser: state.currentUser
 })
 

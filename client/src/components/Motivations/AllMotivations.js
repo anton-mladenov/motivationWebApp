@@ -1,54 +1,58 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Title2 } from "../../lib/styledComponentsLib"
 import { getMotivations, addMotivation } from "../../actions/motivations"
+import { Title2 } from "../../lib/styledComponentsLib"
+import { Redirect, Link } from 'react-router-dom'
+import Header from "../Header/Header"
 import MotivationForm from "./MotivationForm"
+import OneMotivationDetails from "./OneMotivationDetails"
 
-class AllMotivations extends Component {
-
-	state = {
-		value: ""
-	}
+class AllMotivationsComponent extends Component {
 
 	componentDidMount() {
 		this.props.getMotivations()
 	}
 
 	addNewMotivation = (motivation) => {
-		console.log("sending a new motivation")
 		this.props.addMotivation(motivation)
-	}
-
-	randomizer = (array) => {
-		return array.splice(Math.floor(Math.random() * array.length), 1)[0]
 	}
 
 	render() {
 
-		const { motivations } = this.props
+		const { motivations, signUp, currentUser } = this.props
 
-		return (
-			<div>
+		if (currentUser || signUp) {
+			return (
+				<div>
 
-				{!motivations && <p> "Loading ..." </p>}
+					<Header />
 
-				<MotivationForm onSubmit={this.addNewMotivation} />
+					{!motivations && <p> "Loading ..." </p>}
 
-				{motivations && motivations.map(mot =>
-					<div key={mot.id}>
-						<Title2> {mot.motivation} </Title2>
-					</div>
-				)
-				}
+					<MotivationForm onSubmit={this.addNewMotivation} />
 
-			</div>
-		)
+					{
+						motivations && motivations.map(mot =>
+							< div key={mot.id} >
+								<Title2> <Link to={`/all/${mot.id}`}> {mot.motivation} </Link> </Title2>
+							</div>
+						)
+					}
+
+				</div>
+			)
+		} else {
+			return (
+				<Redirect to="/" />
+			)
+		}
 	}
 }
 
-
 const mapStateToProps = state => ({
-	motivations: state.motivations
+	motivations: state.motivations,
+	signUp: state.signUp.success,
+	currentUser: state.currentUser !== null
 })
 
-export default connect(mapStateToProps, { getMotivations, addMotivation })(AllMotivations)
+export default connect(mapStateToProps, { getMotivations, addMotivation })(AllMotivationsComponent)

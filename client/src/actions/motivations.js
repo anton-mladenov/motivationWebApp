@@ -103,6 +103,8 @@ export const newRandomMotivation = (motivation) => (dispatch) => {
 
 export const getMotivation = (id) => (dispatch, getState) => {
 
+	console.log("sending a message from getMotivation inside ACTIONS ... ")
+
 	const state = getState()
 	if (state.currentUser === null || state.currentUser === {}) return null
 	const jwt = state.currentUser.jwt

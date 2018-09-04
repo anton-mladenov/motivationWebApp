@@ -1,19 +1,51 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getMotivations } from "../../actions/motivations"
+import { getMotivations, addMotivation } from "../../actions/motivations"
 import { Title2 } from "../../lib/styledComponentsLib"
 import { Redirect } from 'react-router-dom'
 import Header from "../Header/Header"
+import MotivationForm from "../Motivations/MotivationForm"
 
 class DashboardComponent extends Component {
+
+	state = {
+		showAll: false,
+		showRandom: false
+	}
 
 	componentDidMount() {
 		this.props.getMotivations()
 	}
 
+	showAll = (event) => {
+		event.preventDefault()
+		this.setState({ showAll: true })
+	}
+
+	showRandom = (event) => {
+		event.preventDefault()
+		this.setState({ showRandom: true })
+	}
+
+	addNewMotivation = (motivation) => {
+		this.props.addMotivation(motivation)
+	}
+
 	render() {
 
 		const { motivations, signUp, currentUser } = this.props
+
+		if (this.state.showAll) {
+			return (
+				<Redirect to="/all" />
+			)
+		}
+
+		if (this.state.showRandom) {
+			return (
+				<Redirect to="/random" />
+			)
+		}
 
 		if (currentUser || signUp) {
 			return (
@@ -21,15 +53,17 @@ class DashboardComponent extends Component {
 
 					<Header />
 
-					{!motivations && <p> "Loading ..." </p>}
+					<div onClick={this.showAll}>
+						<h4>
+							<button> Show All Motivations </button>
+						</h4>
+					</div>
 
-					{
-						motivations && motivations.map(mot =>
-							<div key={mot.id}>
-								<Title2> {mot.motivation} </Title2>
-							</div>
-						)
-					}
+					<div onClick={this.showRandom}>
+						<h4>
+							<button> Show a Random Motivation </button>
+						</h4>
+					</div>
 
 				</div>
 			)
@@ -47,4 +81,4 @@ const mapStateToProps = state => ({
 	currentUser: state.currentUser !== null
 })
 
-export default connect(mapStateToProps, { getMotivations })(DashboardComponent)
+export default connect(mapStateToProps, { getMotivations, addMotivation })(DashboardComponent)

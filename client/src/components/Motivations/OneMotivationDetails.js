@@ -18,7 +18,13 @@ class OneMotivationDetails extends Component {
 	}
 
 	componentDidMount() {
+		console.log("getting mot with ID: ", this.motivationId)
 		this.props.getMotivation(this.motivationId)
+		// if (this.state.id) {
+		// 	this.props.getMotivation(this.props.motId(this.state.id))
+		// } else {
+		// 	console.log("___ We have a situation, Houston!!!! ___")
+		// }
 	}
 
 	updateMotivation = (motivation) => {
@@ -42,6 +48,8 @@ class OneMotivationDetails extends Component {
 		return (
 			<div>
 
+				{!oneMotivation && <p> Loading ... </p>}
+
 				{
 					this.state.edit &&
 					<MotivationForm initialValues={oneMotivation} onSubmit={this.updateMotivation} />
@@ -52,7 +60,7 @@ class OneMotivationDetails extends Component {
 					<div>
 						<button onClick={this.toggleEdit} > Edit </button>
 						<button onClick={this.deleteMotivation} > Delete </button>
-						<h6> {oneMotivation.id} </h6>
+						<h4> {oneMotivation.id} </h4>
 						<h2> {oneMotivation.motivation} </h2>
 					</div>
 				}

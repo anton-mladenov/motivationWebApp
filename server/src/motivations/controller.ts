@@ -1,6 +1,6 @@
 import { JsonController, Get, Param, Body, NotFoundError, Authorized, BodyParam, HttpCode, Post, Patch, BadRequestError, Delete } from 'routing-controllers'
 import Motivation from './entity';
-import { getConnection } from "typeorm";
+// import { getRepository, getManager } from "typeorm";
 
 // let randomizer = (array) => {
 // 	return Math.floor(Math.random() * array.length)
@@ -24,52 +24,37 @@ export default class MotivationController {
 		// da ne zabravq izteglq random mot's za konkretniq sign-at user, a ne ot vsichki user-i, kakto e sega
 		// sushto taka da sloja http kodove na vsichki request-i
 
-		// const randomMotivation: Motivation | undefined = await getManager()
-		// return await getManager()
-		// 	.createQueryBuilder(Motivation, "motivation")
-		// 	.orderBy("RANDOM()") 
-		// 	// .limit(1)
-		// 	.getMany();
+		const randomFunc = async () => {
 
-		return await getConnection()
-			.createQueryBuilder()
-			.select("id")
-			.from(Motivation, "motivation")
-			.orderBy("RANDOM()")
-			.limit(1)
-			.getOne()
+			try {
+				let entityManager = await Motivation.getRepository()
+					.createQueryBuilder()
+					.select("motivations.id")
+					.from(Motivation, "motivations")
+					.orderBy("RANDOM()")
+					.limit(1)
+					.getOne()
 
-		// console.log("randomMotivation", randomMotivation.motivation)
-		// return randomMotivation
-		// let motIds = await Motivation.find({
-		// 	select: ["id"]
-		// })
-		// console.log("motIds: ", typeof motIds, motIds)
+				console.log("__testing: ", entityManager)
+				return await entityManager
+			}
+			catch (error) {
+				console.log("___errorrrrr: ", error)
+			}
 
-		// let randomMot = await randomizer(motIds)
-		// console.log("randomMot: ", typeof randomMot, randomMot)
+		}
 
-		// let randomMotId = motIds[randomMot].id
-		// console.log("randomMotId: ", typeof randomMotId, randomMotId)
-
-		// let randomMotQuery: any = await Motivation.find({
-		// 	select: ["id"],
-		// 	where: {
-		// 		id: randomMotId
-		// 	}
-		// })
-		// console.log("randomMotQuery: ", randomMotQuery)
-
-		// return randomMotQuery
+		return await randomFunc()
 	}
 
 	// get a PARTICULAR motivation
-	// @Authorized()
+	@Authorized()
 	@Get("/motivations/:id")
 	async getSingleMotivation(
 		@Param("id") id: number
 	) {
 		let singleMotivation = await Motivation.findOne(id)
+		console.log("____________  testing the back-end with particular motivation ________: ", singleMotivation)
 		return singleMotivation
 	}
 

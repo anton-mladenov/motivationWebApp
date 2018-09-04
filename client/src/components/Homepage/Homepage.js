@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import SignUp from "../Account/SignUp"
-import SignIn from "../Account/SignIn"
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import Header from "../Header/Header"
@@ -16,18 +14,12 @@ class Homepage extends Component {
 		event.preventDefault()
 		console.log("___ from show sign IN")
 		this.setState({ showSignIn: true })
-		// return (
-		// 	<Redirect to="/login" />
-		// )
 	}
 
 	showSignUp = (event) => {
 		event.preventDefault()
 		console.log("___ from show sign UP")
 		this.setState({ showSignUp: true })
-		// return (
-		// 	<Redirect to="/signup" />
-		// )
 	}
 
 	render() {
@@ -61,10 +53,6 @@ class Homepage extends Component {
 					<h1> Hello World </h1>
 				</div>
 
-				{/* <div onClick={() => { this.props.history.push("/dashboard") }} >
-					<h1> Dashboard </h1>
-				</div> */}
-
 				<div onClick={this.showSignIn}>
 					<h5> <button> Click here to sign in </button> </h5>
 				</div>
@@ -72,16 +60,6 @@ class Homepage extends Component {
 				<div onClick={this.showSignUp}>
 					<button> <h5> Click here to create an account </h5> </button>
 				</div>
-
-				{/* <div>
-					<h4> Sign Up </h4>
-					<SignUp />
-				</div>
-
-				<div>
-					<h4> Sign In </h4>
-					<SignIn />
-				</div> */}
 
 			</div>
 		)
