@@ -97,8 +97,49 @@ export const addMotivation = (newMotivation) => (dispatch, getState) => {
 		})
 }
 
-export const newRandomMotivation = (motivation) => (dispatch) => {
-	dispatch(randomMotivation(motivation))
+// export const newRandomMotivation = (motivation) => (dispatch) => {
+// 	dispatch(randomMotivation(motivation))
+// }
+
+export const getRandomMotivation = () => (dispatch, getState) => {
+
+	console.log("sending a message from getRandomMotivation inside ACTIONS ... ")
+
+	const state = getState()
+	if (state.currentUser === null || state.currentUser === {}) return null
+	const jwt = state.currentUser.jwt
+
+	if (isExpired(jwt)) return dispatch(logout())
+
+	let randomId = state.randomMotivation.id
+
+
+	let reqFunc = () => {
+		let newRandomId;
+
+		request
+			.get(`${baseUrl}/motivations/random`)
+			.set("Authorization", `Bearer ${jwt}`)
+			.then(res => newRandomId = res)
+			.catch(err => {
+				if (err.status === 400) {
+					console.log("post request error: ", err.response.body.errors[0].constraints)
+					dispatch(userLoginFailed(err.response.body.message))
+				}
+				else {
+					console.error(err)
+				}
+			})
+
+		return newRandomId
+	}
+
+	if (reqFunc.id === randomId) {
+		this.getRandomMotivation()
+	} else {
+		dispatch(randomMotivation(reqFunc))
+	}
+
 }
 
 export const getMotivation = (id) => (dispatch, getState) => {

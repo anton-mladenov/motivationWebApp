@@ -2,10 +2,6 @@ import { JsonController, Get, Param, Body, NotFoundError, Authorized, BodyParam,
 import Motivation from './entity';
 // import { getRepository, getManager } from "typeorm";
 
-// let randomizer = (array) => {
-// 	return Math.floor(Math.random() * array.length)
-// }
-
 @JsonController()
 export default class MotivationController {
 
@@ -17,48 +13,44 @@ export default class MotivationController {
 		return { allMotivations }
 	}
 
-	// get a RANDOM motivation
-	// @Authorized()
-	@Get("/motivations/random")
-	async getRandomMotivation() {
-		// da ne zabravq izteglq random mot's za konkretniq sign-at user, a ne ot vsichki user-i, kakto e sega
-		// sushto taka da sloja http kodove na vsichki request-i
-
-		const randomFunc = async () => {
-
-			try {
-				let entityManager = await Motivation.getRepository()
-					.createQueryBuilder()
-					.select("motivations.id")
-					.from(Motivation, "motivations")
-					.orderBy("RANDOM()")
-					.limit(1)
-					.getOne()
-
-				console.log("__testing: ", entityManager)
-				return await entityManager
-			}
-			catch (error) {
-				console.log("___errorrrrr: ", error)
-			}
-
-		}
-
-		return await randomFunc()
-	}
-
 	// get a PARTICULAR motivation
-	@Authorized()
-	@Get("/motivations/:id")
+	// @Authorized()
+	@Get("/motivations/:id([0-9]+)")
 	async getSingleMotivation(
 		@Param("id") id: number
 	) {
 		let singleMotivation = await Motivation.findOne(id)
-		console.log("____________  testing the back-end with particular motivation ________: ", singleMotivation)
+		// console.log("____________  testing the back-end with particular motivation ________: ", singleMotivation)
 		return singleMotivation
 	}
 
+	// get a RANDOM motivation
 	// @Authorized()
+	@Get("/motivations/random")
+	getRandomMotivation() {
+		// da new zabravq izteglq random mot's za konkretniq sign-at user, a ne ot vsichki user-i, kakto e sega
+		// sushto taka da sloja http kodove na vsichki request-i
+		const randomFunc = async () => {
+			try {
+				let entityManager = await Motivation.getRepository()
+					.createQueryBuilder()
+					.select("motivations")
+					.from(Motivation, "motivations")
+					.orderBy("RANDOM()")
+					.limit(1)
+					.getOne()
+				console.log("__testing random ID's: ", entityManager)
+				return entityManager
+			}
+			catch (error) {
+				console.log("___errorrrrr: ", error)
+			}
+		}
+		return randomFunc()
+	}
+
+	// create a new motivation
+	@Authorized()
 	@Post("/motivations")
 	@HttpCode(201)
 	async createMotivation(
@@ -70,7 +62,8 @@ export default class MotivationController {
 		return entity
 	}
 
-	// @Authorized()
+	// update a particular motivation
+	@Authorized()
 	@Patch("/motivations/:id")
 	@HttpCode(200)
 	async updateMotivation(
@@ -87,7 +80,8 @@ export default class MotivationController {
 		return motivationToEdit.save()
 	}
 
-	// @Authorized()
+	// delete a particular motivation
+	@Authorized()
 	@Delete("/motivations/")
 	async deleteSingleMotivation(
 		@BodyParam("id") id: number

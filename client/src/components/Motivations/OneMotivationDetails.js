@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getMotivation, editMotivation, deleteMotivation } from "../../actions/motivations"
 import MotivationForm from "./MotivationForm"
+import Header from "../Header/Header"
+import { Redirect } from 'react-router-dom'
 
 class OneMotivationDetails extends Component {
 
@@ -41,37 +43,46 @@ class OneMotivationDetails extends Component {
 
 	render() {
 
-		const { oneMotivation } = this.props
+		const { oneMotivation, currentUser } = this.props
 
 		if (!oneMotivation) return null
 
-		return (
-			<div>
+		if (currentUser) {
+			return (
+				<div>
 
-				{!oneMotivation && <p> Loading ... </p>}
+					<Header />
 
-				{
-					this.state.edit &&
-					<MotivationForm initialValues={oneMotivation} onSubmit={this.updateMotivation} />
-				}
+					{!oneMotivation && <p> Loading ... </p>}
 
-				{
-					!this.state.edit &&
-					<div>
-						<button onClick={this.toggleEdit} > Edit </button>
-						<button onClick={this.deleteMotivation} > Delete </button>
-						<h4> {oneMotivation.id} </h4>
-						<h2> {oneMotivation.motivation} </h2>
-					</div>
-				}
+					{
+						this.state.edit &&
+						<MotivationForm initialValues={oneMotivation} onSubmit={this.updateMotivation} />
+					}
 
-			</div>
-		)
+					{
+						!this.state.edit &&
+						<div>
+							<button onClick={this.toggleEdit} > Edit </button>
+							<button onClick={this.deleteMotivation} > Delete </button>
+							<h4> {oneMotivation.id} </h4>
+							<h2> {oneMotivation.motivation} </h2>
+						</div>
+					}
+
+				</div>
+			)
+		} else {
+			return (
+				<Redirect to="/" />
+			)
+		}
 	}
 }
 
 const mapStateToProps = state => ({
-	oneMotivation: state.oneMotivation
+	oneMotivation: state.oneMotivation,
+	currentUser: state.currentUser !== null
 })
 
 export default connect(mapStateToProps, { getMotivation, editMotivation, deleteMotivation })(OneMotivationDetails)

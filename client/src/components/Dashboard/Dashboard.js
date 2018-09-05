@@ -13,9 +13,9 @@ class DashboardComponent extends Component {
 		showRandom: false
 	}
 
-	componentDidMount() {
-		this.props.getMotivations()
-	}
+	// componentDidMount() {
+	// 	this.props.getMotivations()
+	// }
 
 	showAll = (event) => {
 		event.preventDefault()

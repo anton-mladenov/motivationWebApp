@@ -19,9 +19,9 @@ class AllMotivationsComponent extends Component {
 
 	render() {
 
-		const { motivations, signUp, currentUser } = this.props
+		const { motivations, currentUser } = this.props
 
-		if (currentUser || signUp) {
+		if (currentUser) {
 			return (
 				<div>
 
@@ -51,7 +51,6 @@ class AllMotivationsComponent extends Component {
 
 const mapStateToProps = state => ({
 	motivations: state.motivations,
-	signUp: state.signUp.success,
 	currentUser: state.currentUser !== null
 })
 
