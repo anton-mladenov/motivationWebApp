@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Title, Wrapper } from "../../lib/styledComponentsLib"
+import { Title, WrapperHeader } from "../../lib/styledComponentsLib"
 import { connect } from 'react-redux'
-// import { Redirect } from 'react-router-dom'
 import { logout, userSignupFailed } from '../../actions/users'
 
 class Header extends Component {
@@ -19,12 +18,12 @@ class Header extends Component {
 			return (
 				<div>
 
-					<Wrapper>
+					<WrapperHeader>
 						<Title>
 							Welcome to Motivact
 						</Title>
 						<button onClick={this.handleLogOut} > Log Out </button>
-					</Wrapper>
+					</WrapperHeader>
 
 				</div>
 			)
@@ -32,11 +31,11 @@ class Header extends Component {
 			return (
 				<div>
 
-					<Wrapper>
+					<WrapperHeader>
 						<Title>
 							Welcome to Motivact
 						</Title>
-					</Wrapper>
+					</WrapperHeader>
 
 				</div>
 			)

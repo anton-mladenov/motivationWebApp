@@ -22,15 +22,9 @@ class OneMotivationDetails extends Component {
 	componentDidMount() {
 		console.log("getting mot with ID: ", this.motivationId)
 		this.props.getMotivation(this.motivationId)
-		// if (this.state.id) {
-		// 	this.props.getMotivation(this.props.motId(this.state.id))
-		// } else {
-		// 	console.log("___ We have a situation, Houston!!!! ___")
-		// }
 	}
 
 	updateMotivation = (motivation) => {
-		// console.log("sending updated motivation", motivation)
 		// tova e dobre da izprashta cql object, za da moje v budeshte da se dobavqt oshte properties na nego
 		this.props.editMotivation(this.motivationId, motivation)
 		this.toggleEdit()

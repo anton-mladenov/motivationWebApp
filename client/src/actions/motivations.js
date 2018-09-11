@@ -122,10 +122,7 @@ export let getRandomMotivation = () => (dispatch, getState) => {
 				})
 		)
 
-		console.log("smth + type: ", typeof newRandom, newRandom)
-
 		let currentRandomId = state.randomMotivation
-		console.log("currentRandomId + type: ", typeof currentRandomId, currentRandomId)
 
 		if (newRandom.id === currentRandomId.id) {
 			console.log("FUCKING WHAAAAAAT?!?!?!?")
@@ -133,8 +130,8 @@ export let getRandomMotivation = () => (dispatch, getState) => {
 		}
 
 		dispatch(randomMotivation(newRandom))
-		// console.log("FUCKING SUCCESS")
 	}
+
 	newRandomId()
 }
 

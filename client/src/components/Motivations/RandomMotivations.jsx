@@ -8,8 +8,6 @@ class RandomMotivation extends Component {
 
 	state = {
 		value: false,
-		counter: 0,
-		randomMotivation: "",
 	}
 
 	onClick = (event) => {
@@ -25,19 +23,9 @@ class RandomMotivation extends Component {
 		})
 	}
 
-	// componentDidUpdate(prevProps) {
-	// 	console.log("this.props.randomNum from componentDidUpdate: ", typeof this.props.randomNum.motivation, this.props.randomNum.motivation)
-	// 	console.log("prevProps.randomNum from componentDidUpdate: ", typeof prevProps.randomNum.motivation, prevProps.randomNum.motivation)
-	// 	if (this.props.randomNum === prevProps.randomNum) {
-	// 		console.log("message from ELSE from DidUpdate from componentDidUpdate: ")
-	// 		return this.props.getRandomMotivation()
-	// 	}
-	// }
-
 	render() {
 
 		let value = this.state.value
-		let counter = this.state.counter
 
 		const { randomNum, currentUser } = this.props
 
@@ -57,7 +45,7 @@ class RandomMotivation extends Component {
 
 					<div>
 						{
-							value && counter !== 0 ?
+							value ?
 								<h3> {randomNum.motivation} </h3>
 								: null
 						}

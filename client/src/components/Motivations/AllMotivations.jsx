@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getMotivations, addMotivation } from "../../actions/motivations"
-import { Title2 } from "../../lib/styledComponentsLib"
+import { Title } from "../../lib/styledComponentsLib"
 import { Redirect, Link } from 'react-router-dom'
 import Header from "../Header/Header"
 import MotivationForm from "./MotivationForm"
@@ -33,7 +33,7 @@ class AllMotivationsComponent extends Component {
 					{
 						motivations && motivations.map(mot =>
 							< div key={mot.id} >
-								<Title2> <Link to={`/all/${mot.id}`}> {mot.motivation} </Link> </Title2>
+								<Title> <Link to={`/all/${mot.id}`}> {mot.motivation} </Link> </Title>
 							</div>
 						)
 					}

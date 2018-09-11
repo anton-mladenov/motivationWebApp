@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import Header from "../Header/Header"
+import { WrapperMain, TextInsideMain, Button } from "../../lib/styledComponentsLib"
 
 class Homepage extends Component {
 
@@ -46,19 +47,19 @@ class Homepage extends Component {
 			<div>
 
 				<Header />
+				<WrapperMain>
+					<div>
+						<TextInsideMain> Hello World </TextInsideMain>
+					</div>
 
-				<div>
-					<h1> Hello World </h1>
-				</div>
+					<div onClick={this.showSignIn}>
+						<Button> Click here to sign in </Button>
+					</div>
 
-				<div onClick={this.showSignIn}>
-					<h5> <button> Click here to sign in </button> </h5>
-				</div>
-
-				<div onClick={this.showSignUp}>
-					<button> <h5> Click here to create an account </h5> </button>
-				</div>
-
+					<div onClick={this.showSignUp}>
+						<Button>  Click here to create an account </Button>
+					</div>
+				</WrapperMain>
 			</div>
 		)
 	}

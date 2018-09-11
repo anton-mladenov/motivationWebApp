@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { Title2 } from "../../lib/styledComponentsLib"
-// import { addMotivation } from "../../actions/motivations"
 
 class MotivationForm extends Component {
 
@@ -50,5 +48,4 @@ class MotivationForm extends Component {
 	}
 }
 
-// export default connect(null, { addMotivation })(AddNewMotivation)
 export default connect(null, {})(MotivationForm)
