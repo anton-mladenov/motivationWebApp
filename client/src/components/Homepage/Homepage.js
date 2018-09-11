@@ -12,13 +12,11 @@ class Homepage extends Component {
 
 	showSignIn = (event) => {
 		event.preventDefault()
-		console.log("___ from show sign IN")
 		this.setState({ showSignIn: true })
 	}
 
 	showSignUp = (event) => {
 		event.preventDefault()
-		console.log("___ from show sign UP")
 		this.setState({ showSignUp: true })
 	}
 

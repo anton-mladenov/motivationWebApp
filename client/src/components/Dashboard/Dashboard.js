@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getMotivations, addMotivation } from "../../actions/motivations"
-import { Title2 } from "../../lib/styledComponentsLib"
 import { Redirect } from 'react-router-dom'
 import Header from "../Header/Header"
-import MotivationForm from "../Motivations/MotivationForm"
 
 class DashboardComponent extends Component {
 
@@ -12,10 +10,6 @@ class DashboardComponent extends Component {
 		showAll: false,
 		showRandom: false
 	}
-
-	// componentDidMount() {
-	// 	this.props.getMotivations()
-	// }
 
 	showAll = (event) => {
 		event.preventDefault()
@@ -33,7 +27,7 @@ class DashboardComponent extends Component {
 
 	render() {
 
-		const { motivations, signUp, currentUser } = this.props
+		const { signUp, currentUser } = this.props
 
 		if (this.state.showAll) {
 			return (
@@ -76,7 +70,6 @@ class DashboardComponent extends Component {
 }
 
 const mapStateToProps = state => ({
-	motivations: state.motivations,
 	signUp: state.signUp.success,
 	currentUser: state.currentUser !== null
 })

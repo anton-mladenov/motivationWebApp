@@ -5,7 +5,6 @@ import { Title2 } from "../../lib/styledComponentsLib"
 import { Redirect, Link } from 'react-router-dom'
 import Header from "../Header/Header"
 import MotivationForm from "./MotivationForm"
-import OneMotivationDetails from "./OneMotivationDetails"
 
 class AllMotivationsComponent extends Component {
 

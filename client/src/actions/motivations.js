@@ -47,7 +47,6 @@ export const deleteOneMotivation = (motivationId) => ({
 })
 
 
-
 export const getMotivations = () => (dispatch, getState) => {
 
 	const state = getState()
@@ -97,13 +96,7 @@ export const addMotivation = (newMotivation) => (dispatch, getState) => {
 		})
 }
 
-// export const newRandomMotivation = (motivation) => (dispatch) => {
-// 	dispatch(randomMotivation(motivation))
-// }
-
-export const getRandomMotivation = () => (dispatch, getState) => {
-
-	console.log("sending a message from getRandomMotivation inside ACTIONS ... ")
+export let getRandomMotivation = () => (dispatch, getState) => {
 
 	const state = getState()
 	if (state.currentUser === null || state.currentUser === {}) return null
@@ -111,35 +104,38 @@ export const getRandomMotivation = () => (dispatch, getState) => {
 
 	if (isExpired(jwt)) return dispatch(logout())
 
-	let randomId = state.randomMotivation.id
+	let newRandomId = async () => {
 
+		let newRandom = await Promise.resolve(
+			request
+				.get(`${baseUrl}/motivations/random`)
+				.set("Authorization", `Bearer ${jwt}`)
+				.then(res => res.body)
+				.catch(err => {
+					if (err.status === 400) {
+						console.log("post request error: ", err.response.body.errors[0].constraints)
+						dispatch(userLoginFailed(err.response.body.message))
+					}
+					else {
+						console.error(err)
+					}
+				})
+		)
 
-	let reqFunc = () => {
-		let newRandomId;
+		console.log("smth + type: ", typeof newRandom, newRandom)
 
-		request
-			.get(`${baseUrl}/motivations/random`)
-			.set("Authorization", `Bearer ${jwt}`)
-			.then(res => newRandomId = res)
-			.catch(err => {
-				if (err.status === 400) {
-					console.log("post request error: ", err.response.body.errors[0].constraints)
-					dispatch(userLoginFailed(err.response.body.message))
-				}
-				else {
-					console.error(err)
-				}
-			})
+		let currentRandomId = state.randomMotivation
+		console.log("currentRandomId + type: ", typeof currentRandomId, currentRandomId)
 
-		return newRandomId
+		if (newRandom.id === currentRandomId.id) {
+			console.log("FUCKING WHAAAAAAT?!?!?!?")
+			newRandomId()
+		}
+
+		dispatch(randomMotivation(newRandom))
+		// console.log("FUCKING SUCCESS")
 	}
-
-	if (reqFunc.id === randomId) {
-		this.getRandomMotivation()
-	} else {
-		dispatch(randomMotivation(reqFunc))
-	}
-
+	newRandomId()
 }
 
 export const getMotivation = (id) => (dispatch, getState) => {
