@@ -11,12 +11,19 @@ class OneMotivationDetails extends Component {
 	motivationId = parseInt(this.props.match.params.id, 10)
 
 	state = {
-		edit: false
+		edit: false,
+		backToAll: false
 	}
 
 	toggleEdit = () => {
 		this.setState({
 			edit: !this.state.edit
+		})
+	}
+
+	handleBackToAll = () => {
+		this.setState({
+			backToAll: true
 		})
 	}
 
@@ -39,6 +46,12 @@ class OneMotivationDetails extends Component {
 
 		const { oneMotivation, currentUser } = this.props
 
+		if (this.state.backToAll === true) {
+			return (
+				<Redirect to="/all" />
+			)
+		}
+
 		if (currentUser && !oneMotivation) return (
 			<div>
 				<Header />
@@ -55,6 +68,10 @@ class OneMotivationDetails extends Component {
 					<Header />
 					<WrapperMain>
 						{/* {!oneMotivation && <TextInsideMain> Loading ... </TextInsideMain>} */}
+
+						{
+							<Button onClick={this.handleBackToAll}> Back To All Motivations </Button>
+						}
 
 						{
 							this.state.edit &&

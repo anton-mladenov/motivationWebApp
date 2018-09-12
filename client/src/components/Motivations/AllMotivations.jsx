@@ -27,6 +27,7 @@ class AllMotivationsComponent extends Component {
 
 					<Header />
 					<WrapperMain>
+
 						{!motivations && <TextInsideMain> "Loading ..." </TextInsideMain>}
 
 						<MotivationForm onSubmit={this.addNewMotivation} />
@@ -38,6 +39,7 @@ class AllMotivationsComponent extends Component {
 								</div>
 							)
 						}
+
 					</WrapperMain>
 				</div>
 			)
