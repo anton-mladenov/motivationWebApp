@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { getRandomMotivation } from "../../actions/motivations"
 import Header from "../Header/Header"
 import { Redirect } from 'react-router-dom'
-import { WrapperMain, TextInsideMain, Title, Button } from "../../lib/styledComponentsLib"
+import { WrapperMain, TextInsideMain, TitleInsideMain, Button } from "../../lib/styledComponentsLib"
 
 class RandomMotivation extends Component {
 
@@ -36,12 +36,12 @@ class RandomMotivation extends Component {
 
 					<Header />
 					<WrapperMain>
-						<Title> Random Motivation For You </Title>
+						<TitleInsideMain> Random Motivation For You </TitleInsideMain>
 
 						<div onClick={this.onClick} >
 							<Button>
 								Random Motivation
-						</Button>
+							</Button>
 						</div>
 
 						<div>
