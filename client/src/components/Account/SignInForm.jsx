@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { WrapperMain, Button, TextInsideMain } from "../../lib/styledComponentsLib"
 
 export default class SignInForm extends Component {
 
@@ -20,26 +21,26 @@ export default class SignInForm extends Component {
 	render() {
 		return (
 			<div>
+				<WrapperMain>
+					<form onSubmit={this.handleSubmit} >
 
-				<form onSubmit={this.handleSubmit} >
+						<div>
+							<label>
+								<TextInsideMain>Email:</TextInsideMain>
+								<input type="email" autoComplete="signup-form email" name="email" value={this.state.email || ""} onChange={this.handleChange} />
+							</label>
+						</div>
 
-					<div>
-						<label>
-							Email:
-							<input type="email" autoComplete="signup-form email" name="email" value={this.state.email || ""} onChange={this.handleChange} />
-						</label>
-					</div>
+						<div>
+							<label>
+								<TextInsideMain>Password:</TextInsideMain>
+								<input type="password" autoComplete="signup-form current-password" name="password" value={this.state.password || ""} onChange={this.handleChange} />
+							</label>
+						</div>
 
-					<div>
-						<label>
-							Password:
-							<input type="password" autoComplete="signup-form current-password" name="password" value={this.state.password || ""} onChange={this.handleChange} />
-						</label>
-					</div>
-
-					<button type="submit" > Sign In </button>
-				</form>
-
+						<Button type="submit" > Sign In </Button>
+					</form>
+				</WrapperMain>
 			</div>
 		)
 	}

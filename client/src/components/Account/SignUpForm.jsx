@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { WrapperMain, Button, TextInsideMain } from "../../lib/styledComponentsLib"
 
 export default class SignUpForm extends Component {
 
@@ -20,47 +21,47 @@ export default class SignUpForm extends Component {
 	render() {
 		return (
 			<div>
+				<WrapperMain>
+					<form onSubmit={this.handleSubmit} >
 
-				<form onSubmit={this.handleSubmit} >
+						<div>
+							<label>
+								<TextInsideMain>Email:</TextInsideMain>
+								<input type="email" autoComplete="signup-form email" name="email" value={this.state.email || ""} onChange={this.handleChange} />
+							</label>
+						</div>
 
-					<div>
-						<label>
-							Email:
-							<input type="email" autoComplete="signup-form email" name="email" value={this.state.email || ""} onChange={this.handleChange} />
-						</label>
-					</div>
-
-					{/* <div>
+						{/* <div>
 						<label>
 							Username:
 							<input type="username" name="username" value={this.state.username || ""} onChange={this.handleChange} />
 						</label>
 					</div> */}
 
-					<div>
-						<label>
-							Password:
-							<input type="password" autoComplete="signup-form new-password" name="password" value={this.state.password || ""} onChange={this.handleChange} />
-						</label>
-					</div>
+						<div>
+							<label>
+								<TextInsideMain>Password:</TextInsideMain>
+								<input type="password" autoComplete="signup-form new-password" name="password" value={this.state.password || ""} onChange={this.handleChange} />
+							</label>
+						</div>
 
-					<div>
-						<label>
-							Confirm Password:
-							<input type="password" autoComplete="signup-form new-password" name="confirmPassword" value={this.state.confirmPassword || ""} onChange={this.handleChange} />
-						</label>
-					</div>
+						<div>
+							<label>
+								<TextInsideMain>Confirm Password:</TextInsideMain>
+								<input type="password" autoComplete="signup-form new-password" name="confirmPassword" value={this.state.confirmPassword || ""} onChange={this.handleChange} />
+							</label>
+						</div>
 
-					{
-						this.state.password &&
-						this.state.confirmPassword &&
-						this.state.password !== this.state.confirmPassword &&
-						<p> The Passwords Do NOT Match </p>
-					}
+						{
+							this.state.password &&
+							this.state.confirmPassword &&
+							this.state.password !== this.state.confirmPassword &&
+							<TextInsideMain> The Passwords Do NOT Match </TextInsideMain>
+						}
 
-					<button type="submit" > Create Account </button>
-				</form>
-
+						<Button type="submit" > Create Account </Button>
+					</form>
+				</WrapperMain>
 			</div>
 		)
 	}

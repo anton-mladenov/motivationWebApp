@@ -11,27 +11,38 @@ export const WrapperMain = styled.section`
   background: #5BC0BE;
 `;
 
+export const TitleInsideMain = styled.section`
+font-size: 25px;
+text-align: center;
+color: #1C2541;
+text-decoration: underline;
+margin: 1em
+`;
+
 export const TextInsideMain = styled.section`
 font-size: 20px;
 text-align: center;
 color: #1C2541;
+margin: 1em;
 `;
 
 // Create a Title component that'll render an <h1> tag with some styles
 export const Title = styled.h1`
-  font-size: 25px;
+  font-size: 30px;
   text-align: center;
   color: #6FFFE9;
+  margin: 1em;
 `;
 
 export const Button = styled.button`
   display: inline-block;
-  color: palevioletred;
+  color: #6FFFE9;
   font-size: 1em;
   margin: 1em;
   padding: 0.25em 1em;
-  border: 2px solid #0B132B;
-  border-radius: 3px;
+  border: 1px solid #0B132B;
+  border-radius: 5px;
+  background: #0B132B;
 `;
 
 

@@ -4,6 +4,7 @@ import { signup } from "../../actions/users"
 import SignUpForm from "./SignUpForm"
 import { Redirect } from 'react-router-dom'
 import Header from "../Header/Header"
+import { WrapperMain, TitleInsideMain, TextInsideMain } from "../../lib/styledComponentsLib"
 
 class SignUp extends Component {
 
@@ -25,13 +26,13 @@ class SignUp extends Component {
 			<div>
 
 				<Header />
+				<WrapperMain>
+					<TitleInsideMain> Create Your Account Here </TitleInsideMain>
 
-				<h1> Create Your Account Here </h1>
+					<SignUpForm onSubmit={this.handleSubmit} />
 
-				<SignUpForm onSubmit={this.handleSubmit} />
-
-				<p> {signUp.error} </p>
-
+					<TextInsideMain> {signUp.error} </TextInsideMain>
+				</WrapperMain>
 			</div>
 		)
 	}

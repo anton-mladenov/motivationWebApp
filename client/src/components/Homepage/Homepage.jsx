@@ -45,9 +45,10 @@ class Homepage extends Component {
 
 		return (
 			<div>
-
 				<Header />
+
 				<WrapperMain>
+
 					<div>
 						<TextInsideMain> Hello World </TextInsideMain>
 					</div>

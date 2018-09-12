@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Title, WrapperHeader } from "../../lib/styledComponentsLib"
+import { Title, WrapperHeader, Button } from "../../lib/styledComponentsLib"
 import { connect } from 'react-redux'
 import { logout, userSignupFailed } from '../../actions/users'
 
@@ -20,9 +20,9 @@ class Header extends Component {
 
 					<WrapperHeader>
 						<Title>
-							Welcome to Motivact
+							Motivact
 						</Title>
-						<button onClick={this.handleLogOut} > Log Out </button>
+						<Button onClick={this.handleLogOut} > Log Out </Button>
 					</WrapperHeader>
 
 				</div>
@@ -33,7 +33,7 @@ class Header extends Component {
 
 					<WrapperHeader>
 						<Title>
-							Welcome to Motivact
+							Motivact
 						</Title>
 					</WrapperHeader>
 

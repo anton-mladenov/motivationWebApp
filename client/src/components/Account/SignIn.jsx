@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import SignInForm from "./SignInForm"
 import { Redirect } from 'react-router-dom'
 import Header from "../Header/Header"
+import { WrapperMain, TextInsideMain, TitleInsideMain } from "../../lib/styledComponentsLib"
 
 class SignIn extends Component {
 
@@ -23,17 +24,17 @@ class SignIn extends Component {
 			<div>
 
 				<Header />
+				<WrapperMain>
+					<TitleInsideMain> Sign In </TitleInsideMain>
+					<TextInsideMain> If you already have an account you can sign in with the form below </TextInsideMain>
 
-				<h1> Sign In </h1>
-				<h4> If you already have an account you can sign in with the form below </h4>
+					<SignInForm onSubmit={this.handleSubmit} />
 
-				<SignInForm onSubmit={this.handleSubmit} />
-
-				{
-					error &&
-					<p> {error} </p>
-				}
-
+					{
+						error &&
+						<TextInsideMain> {error} </TextInsideMain>
+					}
+				</WrapperMain>
 			</div>
 		)
 	}
