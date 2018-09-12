@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { WrapperMain, Button, TextInsideMain } from "../../lib/styledComponentsLib"
+import { WrapperMain, Button, TextInsideMain, TextInput } from "../../lib/styledComponentsLib"
 
 export default class SignInForm extends Component {
 
@@ -27,14 +27,14 @@ export default class SignInForm extends Component {
 						<div>
 							<label>
 								<TextInsideMain>Email:</TextInsideMain>
-								<input type="email" autoComplete="signup-form email" name="email" value={this.state.email || ""} onChange={this.handleChange} />
+								<TextInput type="email" autoComplete="signup-form email" name="email" value={this.state.email || ""} onChange={this.handleChange} />
 							</label>
 						</div>
 
 						<div>
 							<label>
 								<TextInsideMain>Password:</TextInsideMain>
-								<input type="password" autoComplete="signup-form current-password" name="password" value={this.state.password || ""} onChange={this.handleChange} />
+								<TextInput type="password" autoComplete="signup-form current-password" name="password" value={this.state.password || ""} onChange={this.handleChange} />
 							</label>
 						</div>
 

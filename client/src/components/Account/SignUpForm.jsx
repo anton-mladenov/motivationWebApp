@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { WrapperMain, Button, TextInsideMain } from "../../lib/styledComponentsLib"
+import { WrapperMain, Button, TextInsideMain, TextInput } from "../../lib/styledComponentsLib"
 
 export default class SignUpForm extends Component {
 
@@ -27,7 +27,7 @@ export default class SignUpForm extends Component {
 						<div>
 							<label>
 								<TextInsideMain>Email:</TextInsideMain>
-								<input type="email" autoComplete="signup-form email" name="email" value={this.state.email || ""} onChange={this.handleChange} />
+								<TextInput type="email" autoComplete="signup-form email" name="email" value={this.state.email || ""} onChange={this.handleChange} />
 							</label>
 						</div>
 
@@ -41,14 +41,14 @@ export default class SignUpForm extends Component {
 						<div>
 							<label>
 								<TextInsideMain>Password:</TextInsideMain>
-								<input type="password" autoComplete="signup-form new-password" name="password" value={this.state.password || ""} onChange={this.handleChange} />
+								<TextInput type="password" autoComplete="signup-form new-password" name="password" value={this.state.password || ""} onChange={this.handleChange} />
 							</label>
 						</div>
 
 						<div>
 							<label>
 								<TextInsideMain>Confirm Password:</TextInsideMain>
-								<input type="password" autoComplete="signup-form new-password" name="confirmPassword" value={this.state.confirmPassword || ""} onChange={this.handleChange} />
+								<TextInput type="password" autoComplete="signup-form new-password" name="confirmPassword" value={this.state.confirmPassword || ""} onChange={this.handleChange} />
 							</label>
 						</div>
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getMotivations, addMotivation } from "../../actions/motivations"
 import { Redirect } from 'react-router-dom'
 import Header from "../Header/Header"
+import { WrapperMain, Button } from "../../lib/styledComponentsLib"
 
 class DashboardComponent extends Component {
 
@@ -46,19 +47,19 @@ class DashboardComponent extends Component {
 				<div>
 
 					<Header />
+					<WrapperMain>
+						<div onClick={this.showAll}>
+							<h4>
+								<Button> Show All Motivations </Button>
+							</h4>
+						</div>
 
-					<div onClick={this.showAll}>
-						<h4>
-							<button> Show All Motivations </button>
-						</h4>
-					</div>
-
-					<div onClick={this.showRandom}>
-						<h4>
-							<button> Show a Random Motivation </button>
-						</h4>
-					</div>
-
+						<div onClick={this.showRandom}>
+							<h4>
+								<Button> Show a Random Motivation </Button>
+							</h4>
+						</div>
+					</WrapperMain>
 				</div>
 			)
 		} else {

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getMotivations, addMotivation } from "../../actions/motivations"
-import { Title } from "../../lib/styledComponentsLib"
+import { Title, WrapperMain, TextInsideMain } from "../../lib/styledComponentsLib"
 import { Redirect, Link } from 'react-router-dom'
 import Header from "../Header/Header"
 import MotivationForm from "./MotivationForm"
+
 
 class AllMotivationsComponent extends Component {
 
@@ -25,19 +26,19 @@ class AllMotivationsComponent extends Component {
 				<div>
 
 					<Header />
+					<WrapperMain>
+						{!motivations && <TextInsideMain> "Loading ..." </TextInsideMain>}
 
-					{!motivations && <p> "Loading ..." </p>}
+						<MotivationForm onSubmit={this.addNewMotivation} />
 
-					<MotivationForm onSubmit={this.addNewMotivation} />
-
-					{
-						motivations && motivations.map(mot =>
-							< div key={mot.id} >
-								<Title> <Link to={`/all/${mot.id}`}> {mot.motivation} </Link> </Title>
-							</div>
-						)
-					}
-
+						{
+							motivations && motivations.map(mot =>
+								< div key={mot.id} >
+									<Title> <Link to={`/all/${mot.id}`}> {mot.motivation} </Link> </Title>
+								</div>
+							)
+						}
+					</WrapperMain>
 				</div>
 			)
 		} else {

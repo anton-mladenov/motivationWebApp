@@ -4,6 +4,7 @@ import { getMotivation, editMotivation, deleteMotivation } from "../../actions/m
 import MotivationForm from "./MotivationForm"
 import Header from "../Header/Header"
 import { Redirect } from 'react-router-dom'
+import { WrapperMain, TextInsideMain, Button } from "../../lib/styledComponentsLib"
 
 class OneMotivationDetails extends Component {
 
@@ -20,7 +21,6 @@ class OneMotivationDetails extends Component {
 	}
 
 	componentDidMount() {
-		console.log("getting mot with ID: ", this.motivationId)
 		this.props.getMotivation(this.motivationId)
 	}
 
@@ -39,31 +39,38 @@ class OneMotivationDetails extends Component {
 
 		const { oneMotivation, currentUser } = this.props
 
-		if (!oneMotivation) return null
+		if (currentUser && !oneMotivation) return (
+			<div>
+				<Header />
+				<WrapperMain>
+					{!oneMotivation && <TextInsideMain> Loading ... </TextInsideMain>}
+				</WrapperMain>
+			</div>
+		)
 
 		if (currentUser) {
 			return (
 				<div>
 
 					<Header />
+					<WrapperMain>
+						{/* {!oneMotivation && <TextInsideMain> Loading ... </TextInsideMain>} */}
 
-					{!oneMotivation && <p> Loading ... </p>}
+						{
+							this.state.edit &&
+							<MotivationForm initialValues={oneMotivation} onSubmit={this.updateMotivation} />
+						}
 
-					{
-						this.state.edit &&
-						<MotivationForm initialValues={oneMotivation} onSubmit={this.updateMotivation} />
-					}
-
-					{
-						!this.state.edit &&
-						<div>
-							<button onClick={this.toggleEdit} > Edit </button>
-							<button onClick={this.deleteMotivation} > Delete </button>
-							<h4> {oneMotivation.id} </h4>
-							<h2> {oneMotivation.motivation} </h2>
-						</div>
-					}
-
+						{
+							!this.state.edit &&
+							<div>
+								<TextInsideMain> ID: {oneMotivation.id} </TextInsideMain>
+								<TextInsideMain> Motivation Text: {oneMotivation.motivation} </TextInsideMain>
+								<Button onClick={this.toggleEdit} > Edit </Button>
+								<Button onClick={this.deleteMotivation} > Delete </Button>
+							</div>
+						}
+					</WrapperMain>
 				</div>
 			)
 		} else {
@@ -71,6 +78,7 @@ class OneMotivationDetails extends Component {
 				<Redirect to="/" />
 			)
 		}
+
 	}
 }
 

@@ -45,12 +45,10 @@ export const Button = styled.button`
   background: #0B132B;
 `;
 
-
-// export const Title2 = styled.h2`
-// 	font-size: 17px;
-// 	text-align: center;
-// 	background: lightblue;
-// 	color: black;
-// 	padding: 1em;
-// 	font-family: Monaco;
-// `
+export const TextInput = styled.input.attrs()`
+  color: white;
+  font-size: 1em;
+  border: 2px solid #0B132B;
+  border-radius: 5px;
+  padding: 5px;
+`
