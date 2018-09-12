@@ -1,15 +1,19 @@
-import { JsonController, Get, Param, Body, NotFoundError, Authorized, BodyParam, HttpCode, Post, Patch, BadRequestError, Delete } from 'routing-controllers'
+import { CurrentUser, JsonController, Get, Param, Body, NotFoundError, Authorized, BodyParam, HttpCode, Post, Patch, BadRequestError, Delete } from 'routing-controllers'
 import Motivation from './entity';
-// import { getRepository, getManager } from "typeorm";
+import User from "../users/entity"
+// import { getRepository, getManager, getConnection, createQueryBuilder } from "typeorm";
 
 @JsonController()
 export default class MotivationController {
 
 	// get ALL motivations
-	@Authorized()
+	// @Authorized()
 	@Get("/motivations")
-	async getAllMotivations() {
-		let allMotivations = await Motivation.find()
+	async getAllMotivations(
+		@CurrentUser() user: User
+	) {
+		let allMotivations = await Motivation.find({ where: { user: user.id } })
+
 		return { allMotivations }
 	}
 
@@ -54,10 +58,12 @@ export default class MotivationController {
 	@Post("/motivations")
 	@HttpCode(201)
 	async createMotivation(
-		@Body() body: Motivation
+		@Body() body: Motivation,
+		@CurrentUser() user: User
 	) {
 		const entity = Motivation.create()
 		entity.motivation = body.motivation
+		entity.user = user.id
 		await entity.save()
 		return entity
 	}

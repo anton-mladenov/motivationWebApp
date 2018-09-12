@@ -15,6 +15,11 @@ export default class Motivation extends BaseEntity {
 	@Column('text', { nullable: false })
 	motivation: string
 
-	@ManyToOne(_ => User, user => user.id)
-	user: number;
+	@ManyToOne(_ => User, user => user.motivations)
+	user: number | undefined
 }
+
+// 
+
+// @ManyToOne(type => User, user => user.photos)
+// user: User;

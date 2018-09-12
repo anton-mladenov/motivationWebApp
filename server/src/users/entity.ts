@@ -25,8 +25,9 @@ export default class User extends BaseEntity {
 	@Exclude({ toPlainOnly: true })
 	password: string
 
-	@OneToMany(_ => Motivations, motivations => motivations.user)
-	motivations: string[];
+	@OneToMany(_ => Motivations, motivation => motivation.user)
+	// { eager: true }
+	motivations: Motivations[];
 
 	async setPassword(rawPassword: string) {
 		const hash = await bcrypt.hash(rawPassword, 10)
@@ -38,3 +39,6 @@ export default class User extends BaseEntity {
 	}
 
 }
+
+// @OneToMany(type => Photo, photo => photo.user)
+// photos: Photo[];
