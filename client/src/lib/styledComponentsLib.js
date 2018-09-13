@@ -46,7 +46,7 @@ export const Button = styled.button`
 `;
 
 export const TextInput = styled.input.attrs()`
-  color: white;
+  color: black;
   font-size: 1em;
   border: 2px solid #0B132B;
   border-radius: 5px;
