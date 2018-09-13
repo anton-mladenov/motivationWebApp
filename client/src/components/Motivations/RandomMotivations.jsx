@@ -19,7 +19,6 @@ class RandomMotivation extends Component {
 		this.setState((prevState) => {
 			return {
 				value: true,
-				counter: prevState.counter + 1,
 			}
 		})
 	}

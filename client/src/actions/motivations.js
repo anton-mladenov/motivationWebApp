@@ -191,11 +191,11 @@ export const deleteMotivation = (motivationId) => (dispatch, getState) => {
 	if (isExpired(jwt)) return dispatch(logout())
 
 	request
-		.delete(`${baseUrl}/motivations`)
+		.delete(`${baseUrl}/motivations/${motivationId}`)
 		.set("Authorization", `Bearer ${jwt}`)
-		.send({
-			id: motivationId
-		})
+		// .send({
+		// 	id: motivationId
+		// })
 		.then(res => dispatch(deleteOneMotivation(res.body)))
 		.catch(err => {
 			if (err.status === 400) {

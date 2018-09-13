@@ -39,7 +39,7 @@ class OneMotivationDetails extends Component {
 
 	deleteMotivation = () => {
 		this.props.deleteMotivation(this.motivationId)
-		// tuk redirect-vam kum lista s motivations
+		this.handleBackToAll()
 	}
 
 	render() {

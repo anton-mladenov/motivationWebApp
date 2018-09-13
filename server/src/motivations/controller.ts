@@ -1,4 +1,4 @@
-import { CurrentUser, JsonController, Get, Param, Body, NotFoundError, Authorized, BodyParam, HttpCode, Post, Patch, BadRequestError, Delete } from 'routing-controllers'
+import { CurrentUser, OnUndefined, JsonController, Get, Param, Body, NotFoundError, Authorized, BodyParam, HttpCode, Post, Patch, BadRequestError, Delete, Header } from 'routing-controllers'
 import Motivation from './entity';
 import User from "../users/entity"
 // import { getRepository, getManager, getConnection, createQueryBuilder } from "typeorm";
@@ -31,7 +31,9 @@ export default class MotivationController {
 	// get a RANDOM motivation
 	// @Authorized()
 	@Get("/motivations/random")
-	getRandomMotivation() {
+	getRandomMotivation(
+		@CurrentUser() user: User
+	) {
 		// da new zabravq izteglq random mot's za konkretniq sign-at user, a ne ot vsichki user-i, kakto e sega
 		// sushto taka da sloja http kodove na vsichki request-i
 		const randomFunc = async () => {
@@ -40,10 +42,11 @@ export default class MotivationController {
 					.createQueryBuilder()
 					.select("motivations")
 					.from(Motivation, "motivations")
+					.where("motivations.user = :user", { user: user.id })
 					.orderBy("RANDOM()")
 					.limit(1)
 					.getOne()
-				console.log("__testing random ID's: ", entityManager)
+
 				return entityManager
 			}
 			catch (error) {
@@ -87,14 +90,16 @@ export default class MotivationController {
 	}
 
 	// delete a particular motivation
-	@Authorized()
-	@Delete("/motivations/")
+	// @Authorized()
+	@Delete("/motivations/:id")
+	@OnUndefined(404)
 	async deleteSingleMotivation(
-		@BodyParam("id") id: number
+		@Param("id") id: number,
 	) {
 		let singleMotivation = await Motivation.findOne(id)
+		console.log(" __________________ DELETE _____ : ", singleMotivation)
 
-		if (!singleMotivation) return "No Motivation found with this ID"
+		if (!singleMotivation || singleMotivation === undefined) return "No Motivation found with this ID"
 
 		if (singleMotivation) return await Motivation.remove(singleMotivation)
 	}

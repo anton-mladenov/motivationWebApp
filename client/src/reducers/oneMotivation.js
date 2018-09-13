@@ -19,7 +19,7 @@ export default function (state = null, action) {
 
 		case DELETE_MOTIVATION:
 			console.log("delete from reducer: ", action.payload)
-			return state.filder(motivation => motivation.id !== action.payload)
+			return state
 
 		default:
 			return state
