@@ -11,14 +11,12 @@ export default function (state = null, action) {
 
 		case EDIT_MOTIVATION:
 			if (action.payload.id === state.id) {
-				// console.log("from the EDIT reducer", action.payload.motivation)
 				return action.payload
 			} else {
 				return state
 			}
 
 		case DELETE_MOTIVATION:
-			console.log("delete from reducer: ", action.payload)
 			return state
 
 		default:

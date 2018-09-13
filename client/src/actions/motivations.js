@@ -125,7 +125,6 @@ export let getRandomMotivation = () => (dispatch, getState) => {
 		let currentRandomId = state.randomMotivation
 
 		if (newRandom.id === currentRandomId.id) {
-			console.log("FUCKING WHAAAAAAT?!?!?!?")
 			newRandomId()
 		}
 

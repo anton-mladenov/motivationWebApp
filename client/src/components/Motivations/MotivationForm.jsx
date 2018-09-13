@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { WrapperMain, TextInsideMain } from "../../lib/styledComponentsLib"
+import { WrapperMain, TextInsideMain, TextInput } from "../../lib/styledComponentsLib"
 
 class MotivationForm extends Component {
 
@@ -36,11 +36,15 @@ class MotivationForm extends Component {
 				<WrapperMain>
 					<form onSubmit={this.handleSubmit}>
 						<label>
+
 							<TextInsideMain>Add A New Motivation</TextInsideMain>
+
 							<input type="text" name="motivation" ref={this.myRef} value={
 								this.state.motivation !== undefined ? this.state.motivation : initialValues.motivation
 							} onChange={this.handleChange} />
+
 						</label>
+
 						<input type="submit" value="Submit" />
 					</form>
 				</WrapperMain>

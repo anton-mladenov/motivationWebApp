@@ -24,7 +24,6 @@ export default class MotivationController {
 		@Param("id") id: number
 	) {
 		let singleMotivation = await Motivation.findOne(id)
-		// console.log("____________  testing the back-end with particular motivation ________: ", singleMotivation)
 		return singleMotivation
 	}
 
@@ -73,7 +72,7 @@ export default class MotivationController {
 
 	// update a particular motivation
 	@Authorized()
-	@Patch("/motivations/:id")
+	@Patch("/motivations/:id([0-9]+)")
 	@HttpCode(200)
 	async updateMotivation(
 		@Param("id") id,
@@ -91,7 +90,7 @@ export default class MotivationController {
 
 	// delete a particular motivation
 	// @Authorized()
-	@Delete("/motivations/:id")
+	@Delete("/motivations/:id([0-9]+)")
 	@OnUndefined(404)
 	async deleteSingleMotivation(
 		@Param("id") id: number,
