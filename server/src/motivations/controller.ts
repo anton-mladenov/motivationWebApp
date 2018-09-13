@@ -1,13 +1,12 @@
-import { CurrentUser, OnUndefined, JsonController, Get, Param, Body, NotFoundError, Authorized, BodyParam, HttpCode, Post, Patch, BadRequestError, Delete, Header } from 'routing-controllers'
+import { CurrentUser, OnUndefined, JsonController, Get, Param, Body, NotFoundError, Authorized, HttpCode, Post, Patch, BadRequestError, Delete } from 'routing-controllers'
 import Motivation from './entity';
 import User from "../users/entity"
-// import { getRepository, getManager, getConnection, createQueryBuilder } from "typeorm";
 
 @JsonController()
 export default class MotivationController {
 
 	// get ALL motivations
-	// @Authorized()
+	@Authorized()
 	@Get("/motivations")
 	async getAllMotivations(
 		@CurrentUser() user: User
@@ -18,7 +17,7 @@ export default class MotivationController {
 	}
 
 	// get a PARTICULAR motivation
-	// @Authorized()
+	@Authorized()
 	@Get("/motivations/:id([0-9]+)")
 	async getSingleMotivation(
 		@Param("id") id: number
@@ -28,7 +27,7 @@ export default class MotivationController {
 	}
 
 	// get a RANDOM motivation
-	// @Authorized()
+	@Authorized()
 	@Get("/motivations/random")
 	getRandomMotivation(
 		@CurrentUser() user: User
@@ -89,14 +88,13 @@ export default class MotivationController {
 	}
 
 	// delete a particular motivation
-	// @Authorized()
+	@Authorized()
 	@Delete("/motivations/:id([0-9]+)")
 	@OnUndefined(404)
 	async deleteSingleMotivation(
 		@Param("id") id: number,
 	) {
 		let singleMotivation = await Motivation.findOne(id)
-		console.log(" __________________ DELETE _____ : ", singleMotivation)
 
 		if (!singleMotivation || singleMotivation === undefined) return "No Motivation found with this ID"
 

@@ -19,7 +19,3 @@ export default class Motivation extends BaseEntity {
 	user: number | undefined
 }
 
-// 
-
-// @ManyToOne(type => User, user => user.photos)
-// user: User;
